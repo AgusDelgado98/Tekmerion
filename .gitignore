@@ -1,0 +1,53 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local secrets & environment
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+secrets/
+
+# Data that should not be committed by default (large or sensitive)
+# We keep the small synthetic sample under data/raw/
+data/processed/*
+!data/processed/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+logs/

@@ -1,0 +1,4 @@
+# Tekmérion – core dependencies (V1)
+# Keep minimal. Add only what is actually used.
+
+pytest>=8.0.0
