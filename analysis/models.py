@@ -60,6 +60,12 @@ class ProcessedJob:
     is_duplicate: bool
     duplicate_of: Optional[str] = None
 
+    # Provenance (additive for real sources; None for legacy synthetic records)
+    source_url: Optional[str] = None
+    retrieved_at: Optional[str] = None
+    # Original id as provided by the source (before namespacing); None if invented
+    source_record_id: Optional[str] = None
+
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)
         d["role_family"] = self.role_family.value

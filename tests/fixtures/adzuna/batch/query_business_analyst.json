@@ -1,0 +1,26 @@
+{
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 2,
+  "results": [
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7006001",
+      "title": "Business Analyst",
+      "description": "Business Analyst focused on requirements, processes and SQL for data stakeholders.",
+      "created": "2026-07-12T09:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7006001",
+      "company": {"display_name": "Consultora Norte"},
+      "location": {"display_name": "Buenos Aires"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7006002",
+      "title": "Business Analyst - Data",
+      "description": "Business Analyst with data focus. SQL, reporting and process documentation.",
+      "created": "2026-07-11T15:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7006002",
+      "company": {"display_name": "Ops Analytics"},
+      "location": {"display_name": "Mendoza"}
+    }
+  ]
+}

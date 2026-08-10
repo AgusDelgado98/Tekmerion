@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Análisis fundamentado · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Análisis fundamentado</h1>
+  <p class="muted"><a href="{{ url_for('main.analysis_roles') }}">Comparar dos roles →</a></p>
+  <p class="lede">
+    La IA interpreta <strong>solo</strong> evidencia ya calculada por Tekmérion.
+    No recalcula métricas ni consulta internet.
+  </p>
+</section>
+
+<p class="ai-disclosure">
+  El análisis AI se genera <strong>solo</strong> a partir de la evidence calculada por Tekmérion.
+  No consulta internet ni recalcula métricas.
+</p>
+<section class="analysis-status">
+  <p>
+    Provider:
+    <code>{{ provider_name }}</code>
+    {% if provider_name == 'fake' %}
+      <span class="badge provider-demo">Demo provider (determinista · no LLM real)</span>
+    {% elif provider_name not in ['disabled', ''] and available %}
+      <span class="badge provider-live">Live provider</span>
+    {% endif %}
+    ·
+    {% if available %}
+      <span class="status-ok">disponible</span>
+    {% else %}
+      <span class="status-off">desactivado</span>
+      <span class="muted">— configurá TEKMERION_LLM_PROVIDER=fake|openai_compatible</span>
+    {% endif %}
+  </p>
+  {% if dataset_meta %}
+  <p class="muted">{{ dataset_meta.display_line() }}</p>
+  {% endif %}
+</section>
+
+{% if error %}
+<p class="flash flash-error">{{ error }}</p>
+{% endif %}
+
+{% if available %}
+<form method="post" class="analysis-form">
+  <button type="submit" class="btn-primary">Generar market summary</button>
+  <p class="muted">La generación solo ocurre con este botón (GET no llama al modelo).</p>
+</form>
+{% endif %}
+
+{% if analysis %}
+<section class="analysis-result">
+  <h2>Resumen</h2>
+  <p>{{ analysis.summary }}</p>
+
+  <h2>Hallazgos</h2>
+  <ol>
+    {% for f in analysis.key_findings %}
+    <li>
+      {{ f.text }}
+      {% if f.evidence_refs %}
+      <div class="evidence-refs">
+        {% for ref in f.evidence_refs %}
+        <code class="ref">{{ ref }}</code>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+
+  <h2>Limitaciones</h2>
+  <ul>
+    {% for lim in analysis.limitations %}
+    <li>{{ lim }}</li>
+    {% endfor %}
+  </ul>
+
+  <p class="muted meta-line">
+    prompt {{ analysis.prompt_version }}
+    · {{ analysis.provider }}/{{ analysis.model }}
+    · fingerprint {{ analysis.grounding_fingerprint }}
+  </p>
+</section>
+{% elif available %}
+<p class="muted">Todavía no hay un análisis generado en esta sesión.</p>
+{% endif %}
+{% endblock %}

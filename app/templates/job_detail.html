@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }} · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <p class="breadcrumb"><a href="{{ url_for('main.jobs') }}">← Vacantes</a></p>
+  <h1>{{ job.title or '(sin título)' }}</h1>
+  <p class="lede">{{ job.company }}{% if job.location %} · {{ job.location }}{% endif %}</p>
+</section>
+
+<section class="job-meta">
+  <dl class="meta-grid">
+    <dt>Role family</dt>
+    <dd><code>{{ job.role_family.value }}</code></dd>
+    <dt>Seniority</dt>
+    <dd>{{ job.seniority.value }}</dd>
+    <dt>Source</dt>
+    <dd>{{ job.source }}</dd>
+    {% if job.posted_date %}
+    <dt>Posted</dt>
+    <dd>{{ job.posted_date }}</dd>
+    {% endif %}
+    {% if job.retrieved_at %}
+    <dt>Retrieved</dt>
+    <dd>{{ job.retrieved_at }}</dd>
+    {% endif %}
+    {% if job.source_record_id %}
+    <dt>Source record id</dt>
+    <dd><code>{{ job.source_record_id }}</code></dd>
+    {% endif %}
+    <dt>Id interno</dt>
+    <dd><code>{{ job.id }}</code></dd>
+  </dl>
+
+  {% if job.source_url %}
+  <p class="source-link">
+    <a href="{{ job.source_url }}" target="_blank" rel="noopener noreferrer">Ver fuente original ↗</a>
+  </p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Descripción</h2>
+  <p class="job-description">{{ job.description or '—' }}</p>
+</section>
+
+{% if job.skills_extracted %}
+<section>
+  <h2>Skills extraídas</h2>
+  <ul class="skill-chips">
+    {% for s in job.skills_extracted %}
+    <li><code>{{ s }}</code></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

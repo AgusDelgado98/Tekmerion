@@ -1,0 +1,38 @@
+{
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 3,
+  "results": [
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7001999",
+      "title": "Business Intelligence Analyst",
+      "description": "BI Analyst overlapping with BI query. Tableau, SQL and dashboards. Extra note from BI feed.",
+      "created": "2026-07-15T12:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7001999",
+      "salary_min": 1600000,
+      "salary_max": 2200000,
+      "company": {"display_name": "Shared Co"},
+      "location": {"display_name": "Córdoba, Córdoba"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7002001",
+      "title": "Senior Business Intelligence Analyst",
+      "description": "Senior BI Analyst. Power BI, DAX, dimensional modelling and stakeholder management.",
+      "created": "2026-07-19T11:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7002001",
+      "company": {"display_name": "Banking BI"},
+      "location": {"display_name": "Buenos Aires"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7002002",
+      "title": "BI Developer",
+      "description": "BI Developer with Looker, SQL and data modelling experience.",
+      "created": "2026-07-17T09:30:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7002002",
+      "company": {"display_name": "Retail Insights"},
+      "location": {"display_name": "Rosario"}
+    }
+  ]
+}

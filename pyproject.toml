@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tekmerion"
-version = "0.3.0"
+version = "0.7.0"
 description = "Evidence-first analysis of Data, BI and AI job market signals"
 readme = "README.md"
 requires-python = ">=3.10"

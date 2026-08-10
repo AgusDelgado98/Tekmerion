@@ -1,0 +1,365 @@
+{
+  "schema": "tekmerion.market_batch.v1",
+  "source": "adzuna",
+  "country": "ar",
+  "retrieved_at": "2026-08-10T19:00:00Z",
+  "queries": [
+    "data analyst",
+    "business intelligence analyst",
+    "data scientist"
+  ],
+  "received_per_query": {
+    "data analyst": 4,
+    "business intelligence analyst": 3,
+    "data scientist": 3
+  },
+  "total_received": 10,
+  "unique_records": 8,
+  "duplicates_removed": 2,
+  "matched_queries_by_id": {
+    "adzuna:7001001": [
+      "data analyst",
+      "data scientist"
+    ],
+    "adzuna:7001002": [
+      "data analyst"
+    ],
+    "adzuna:7001003": [
+      "data analyst"
+    ],
+    "adzuna:7001999": [
+      "business intelligence analyst",
+      "data analyst"
+    ],
+    "adzuna:7002001": [
+      "business intelligence analyst"
+    ],
+    "adzuna:7002002": [
+      "business intelligence analyst"
+    ],
+    "adzuna:7003001": [
+      "data scientist"
+    ],
+    "adzuna:7003002": [
+      "data scientist"
+    ]
+  },
+  "pipeline_summary": {
+    "total_input": 8,
+    "valid_count": 8,
+    "invalid_count": 0,
+    "duplicate_count": 0,
+    "role_family_counts": {
+      "data_analyst": 3,
+      "bi_analyst": 3,
+      "data_scientist": 2
+    },
+    "seniority_counts": {
+      "unknown": 5,
+      "junior": 2,
+      "senior": 1
+    }
+  },
+  "evidence_summary": {
+    "n_analysis_records": 8,
+    "role_distribution": [
+      {
+        "item": "bi_analyst",
+        "count": 3,
+        "proportion": 0.375
+      },
+      {
+        "item": "data_analyst",
+        "count": 3,
+        "proportion": 0.375
+      },
+      {
+        "item": "data_scientist",
+        "count": 2,
+        "proportion": 0.25
+      }
+    ],
+    "seniority_distribution": [
+      {
+        "item": "unknown",
+        "count": 5,
+        "proportion": 0.625
+      },
+      {
+        "item": "junior",
+        "count": 2,
+        "proportion": 0.25
+      },
+      {
+        "item": "senior",
+        "count": 1,
+        "proportion": 0.125
+      }
+    ],
+    "top_skills": [
+      {
+        "item": "python",
+        "count": 5,
+        "proportion": 0.625
+      },
+      {
+        "item": "sql",
+        "count": 5,
+        "proportion": 0.625
+      },
+      {
+        "item": "power_bi",
+        "count": 2,
+        "proportion": 0.25
+      },
+      {
+        "item": "a_b_testing",
+        "count": 1,
+        "proportion": 0.125
+      },
+      {
+        "item": "excel",
+        "count": 1,
+        "proportion": 0.125
+      },
+      {
+        "item": "looker",
+        "count": 1,
+        "proportion": 0.125
+      },
+      {
+        "item": "pandas",
+        "count": 1,
+        "proportion": 0.125
+      },
+      {
+        "item": "scikit_learn",
+        "count": 1,
+        "proportion": 0.125
+      },
+      {
+        "item": "statistics",
+        "count": 1,
+        "proportion": 0.125
+      },
+      {
+        "item": "tableau",
+        "count": 1,
+        "proportion": 0.125
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "adzuna:7001001",
+      "title": "Data Analyst",
+      "company": "Acme Data",
+      "location": "Buenos Aires",
+      "description": "Data Analyst with SQL, Python and Power BI. Build dashboards and analyse product metrics.",
+      "salary_min": 1000000,
+      "salary_max": 1500000,
+      "currency": null,
+      "posted_date": "2026-07-20T09:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Data Analyst",
+      "role_family": "data_analyst",
+      "seniority": "unknown",
+      "skills_extracted": [
+        "power_bi",
+        "python",
+        "sql"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7001001",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7001001"
+    },
+    {
+      "id": "adzuna:7001002",
+      "title": "Junior Data Analyst",
+      "company": "StartUp BA",
+      "location": "CABA",
+      "description": "Junior Data Analyst. Excel, SQL básico y ganas de aprender Python.",
+      "salary_min": null,
+      "salary_max": null,
+      "currency": null,
+      "posted_date": "2026-07-18T10:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Junior Data Analyst",
+      "role_family": "data_analyst",
+      "seniority": "junior",
+      "skills_extracted": [
+        "excel",
+        "python",
+        "sql"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7001002",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7001002"
+    },
+    {
+      "id": "adzuna:7001003",
+      "title": "Data Analyst - Product",
+      "company": "Product Labs",
+      "location": "Remote - Argentina",
+      "description": "Product-focused Data Analyst. SQL, Python, A/B testing.",
+      "salary_min": null,
+      "salary_max": null,
+      "currency": null,
+      "posted_date": "2026-07-21T08:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Data Analyst - Product",
+      "role_family": "data_analyst",
+      "seniority": "unknown",
+      "skills_extracted": [
+        "a_b_testing",
+        "python",
+        "sql"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7001003",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7001003"
+    },
+    {
+      "id": "adzuna:7001999",
+      "title": "Business Intelligence Analyst",
+      "company": "Shared Co",
+      "location": "Córdoba, Córdoba",
+      "description": "BI Analyst overlapping with BI query. Tableau, SQL and dashboards. Extra note from BI feed.",
+      "salary_min": 1600000,
+      "salary_max": 2200000,
+      "currency": null,
+      "posted_date": "2026-07-15T12:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Business Intelligence Analyst",
+      "role_family": "bi_analyst",
+      "seniority": "unknown",
+      "skills_extracted": [
+        "sql",
+        "tableau"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7001999",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7001999"
+    },
+    {
+      "id": "adzuna:7002001",
+      "title": "Senior Business Intelligence Analyst",
+      "company": "Banking BI",
+      "location": "Buenos Aires",
+      "description": "Senior BI Analyst. Power BI, DAX, dimensional modelling and stakeholder management.",
+      "salary_min": null,
+      "salary_max": null,
+      "currency": null,
+      "posted_date": "2026-07-19T11:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Senior Business Intelligence Analyst",
+      "role_family": "bi_analyst",
+      "seniority": "senior",
+      "skills_extracted": [
+        "power_bi"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7002001",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7002001"
+    },
+    {
+      "id": "adzuna:7002002",
+      "title": "BI Developer",
+      "company": "Retail Insights",
+      "location": "Rosario",
+      "description": "BI Developer with Looker, SQL and data modelling experience.",
+      "salary_min": null,
+      "salary_max": null,
+      "currency": null,
+      "posted_date": "2026-07-17T09:30:00Z",
+      "source": "adzuna",
+      "normalized_title": "Bi Developer",
+      "role_family": "bi_analyst",
+      "seniority": "unknown",
+      "skills_extracted": [
+        "looker",
+        "sql"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7002002",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7002002"
+    },
+    {
+      "id": "adzuna:7003001",
+      "title": "Data Scientist",
+      "company": "AI Labs AR",
+      "location": "Buenos Aires",
+      "description": "Data Scientist. Python, scikit-learn, pandas and statistical modelling.",
+      "salary_min": null,
+      "salary_max": null,
+      "currency": null,
+      "posted_date": "2026-07-16T14:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Data Scientist",
+      "role_family": "data_scientist",
+      "seniority": "unknown",
+      "skills_extracted": [
+        "pandas",
+        "python",
+        "scikit_learn"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7003001",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7003001"
+    },
+    {
+      "id": "adzuna:7003002",
+      "title": "Junior Data Scientist",
+      "company": "Grad Program",
+      "location": "Remote",
+      "description": "Junior Data Scientist. Python, statistics and machine learning basics.",
+      "salary_min": null,
+      "salary_max": null,
+      "currency": null,
+      "posted_date": "2026-07-14T10:00:00Z",
+      "source": "adzuna",
+      "normalized_title": "Junior Data Scientist",
+      "role_family": "data_scientist",
+      "seniority": "junior",
+      "skills_extracted": [
+        "python",
+        "statistics"
+      ],
+      "is_valid": true,
+      "validation_errors": [],
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "source_url": "https://www.adzuna.com.ar/details/7003002",
+      "retrieved_at": "2026-08-10T19:00:00Z",
+      "source_record_id": "7003002"
+    }
+  ]
+}

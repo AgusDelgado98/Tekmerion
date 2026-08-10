@@ -14,10 +14,33 @@
         <a href="{{ url_for('main.index') }}">Overview</a>
         <a href="{{ url_for('main.skills') }}">Skills</a>
         <a href="{{ url_for('main.roles') }}">Roles</a>
+        <a href="{{ url_for('main.jobs') }}">Vacantes</a>
         <a href="{{ url_for('main.compare') }}">Comparar</a>
         <a href="{{ url_for('main.cooccurrence') }}">Co-ocurrencia</a>
+        <a href="{{ url_for('main.analysis') }}">Análisis</a>
+        <a href="{{ url_for('main.analysis_roles') }}">Comparar roles</a>
       </nav>
     </div>
+    {% if dataset_meta %}
+    <div class="container dataset-bar">
+      <div class="dataset-badge dataset-{{ dataset_meta.mode }}">
+        {{ dataset_meta.display_line() }}
+      </div>
+      {% if dataset_options and dataset_options|length > 1 %}
+      <form method="post" action="{{ url_for('main.set_dataset') }}" class="dataset-switch">
+        <label for="dataset_id" class="sr-only">Dataset</label>
+        <select name="dataset_id" id="dataset_id" onchange="this.form.submit()">
+          {% for opt in dataset_options %}
+          <option value="{{ opt.id }}" {% if opt.id == dataset_id %}selected{% endif %}>
+            {{ opt.option_label() }}
+          </option>
+          {% endfor %}
+        </select>
+        <noscript><button type="submit">Cambiar</button></noscript>
+      </form>
+      {% endif %}
+    </div>
+    {% endif %}
   </header>
 
   <main class="container">
@@ -37,8 +60,12 @@
   <footer class="site-footer">
     <div class="container">
       <p>
-        Tekmérion · Evidence-first · Muestra sintética de desarrollo.
-        Los números no representan el mercado laboral real.
+        Tekmérion · Evidence-first.
+        {% if dataset_meta and dataset_meta.mode == 'market' %}
+          Visualizando un market artifact procesado; Flask no llama a fuentes externas.
+        {% else %}
+          Muestra sintética de desarrollo. Los números no representan el mercado laboral real.
+        {% endif %}
       </p>
     </div>
   </footer>

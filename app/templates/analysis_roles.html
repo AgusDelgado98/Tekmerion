@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Comparación de roles · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Comparación de roles</h1>
+  <p class="lede">
+    Compara dos role families usando solo evidencia del dataset activo.
+    Shared / exclusive skills se calculan de forma determinista; la IA solo redacta.
+  </p>
+</section>
+
+<p class="ai-disclosure">
+  El análisis AI se genera <strong>solo</strong> a partir de la evidence calculada por Tekmérion.
+  No consulta internet ni recalcula métricas.
+</p>
+<section class="analysis-status">
+  <p>
+    Provider: <code>{{ provider_name }}</code>
+    {% if provider_name == 'fake' %}
+      <span class="badge provider-demo">Demo provider (determinista · no LLM real)</span>
+    {% elif provider_name not in ['disabled', ''] and available %}
+      <span class="badge provider-live">Live provider</span>
+    {% endif %} ·
+    {% if available %}<span class="status-ok">disponible</span>
+    {% else %}<span class="status-off">desactivado</span>{% endif %}
+  </p>
+  {% if dataset_meta %}
+  <p class="muted">{{ dataset_meta.display_line() }}</p>
+  {% endif %}
+</section>
+
+{% if error %}
+<p class="flash flash-error">{{ error }}</p>
+{% endif %}
+
+{% if available and roles %}
+<form method="post" class="analysis-form role-compare-form">
+  <div class="role-pickers">
+    <label>
+      Role A
+      <select name="role_a" required>
+        <option value="">—</option>
+        {% for r in roles %}
+        <option value="{{ r }}" {% if r == role_a %}selected{% endif %}>{{ r }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Role B
+      <select name="role_b" required>
+        <option value="">—</option>
+        {% for r in roles %}
+        <option value="{{ r }}" {% if r == role_b %}selected{% endif %}>{{ r }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </div>
+  <button type="submit" class="btn-primary">Generar comparación</button>
+  <p class="muted">GET no llama al modelo. Solo este botón genera.</p>
+</form>
+{% elif not roles %}
+<p class="muted">No hay role families en el dataset activo.</p>
+{% endif %}
+
+{% if comparison %}
+<section class="analysis-result">
+  <h2>{{ comparison.role_a }} vs {{ comparison.role_b }}</h2>
+  <p>{{ comparison.summary }}</p>
+
+  {% if comparison.shared_skills %}
+  <h3>Skills compartidas</h3>
+  <ul class="skill-chips">
+    {% for s in comparison.shared_skills %}
+    <li><code>{{ s }}</code></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <div class="two-col">
+    <div>
+      <h3>Solo en {{ comparison.role_a }}</h3>
+      <ul class="skill-chips">
+        {% for s in comparison.role_a_only_skills %}
+        <li><code>{{ s }}</code></li>
+        {% else %}
+        <li class="muted">—</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h3>Solo en {{ comparison.role_b }}</h3>
+      <ul class="skill-chips">
+        {% for s in comparison.role_b_only_skills %}
+        <li><code>{{ s }}</code></li>
+        {% else %}
+        <li class="muted">—</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <h3>Diferencias</h3>
+  <ol>
+    {% for f in comparison.differences or comparison.key_findings %}
+    <li>
+      {{ f.text }}
+      <div class="evidence-refs">
+        {% for ref in f.evidence_refs %}
+        <code class="ref">{{ ref }}</code>
+        {% endfor %}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <h3>Limitaciones</h3>
+  <ul>
+    {% for lim in comparison.limitations %}
+    <li>{{ lim }}</li>
+    {% endfor %}
+  </ul>
+
+  <p class="muted meta-line">
+    {{ comparison.prompt_version }} · {{ comparison.provider }}/{{ comparison.model }}
+    · fingerprint {{ comparison.grounding_fingerprint }}
+  </p>
+</section>
+{% elif available %}
+<p class="muted">Todavía no hay una comparación generada para este dataset.</p>
+{% endif %}
+{% endblock %}

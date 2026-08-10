@@ -1,0 +1,26 @@
+{
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 2,
+  "results": [
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7004001",
+      "title": "Machine Learning Engineer",
+      "description": "ML Engineer. Python, MLflow, Docker, Kubernetes and FastAPI for production models.",
+      "created": "2026-07-22T11:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7004001",
+      "company": {"display_name": "ModelOps"},
+      "location": {"display_name": "Remote - LATAM"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7004002",
+      "title": "MLOps Engineer",
+      "description": "MLOps Engineer. CI/CD for models, Docker, Kubernetes and monitoring.",
+      "created": "2026-07-13T16:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7004002",
+      "company": {"display_name": "Platform Co"},
+      "location": {"display_name": "Buenos Aires"}
+    }
+  ]
+}

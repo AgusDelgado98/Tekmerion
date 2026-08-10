@@ -1,0 +1,110 @@
+{
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 4,
+  "results": [
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "4829103751",
+      "title": "Data Analyst",
+      "description": "We are looking for a Data Analyst with strong SQL, Python and Power BI skills. You will build dashboards, analyse product metrics and work closely with stakeholders.",
+      "created": "2026-07-20T09:15:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/4829103751",
+      "salary_min": 1200000,
+      "salary_max": 1800000,
+      "salary_is_predicted": 0,
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "Tech Solutions SA"
+      },
+      "location": {
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "display_name": "Buenos Aires, Ciudad Autónoma de Buenos Aires",
+        "area": ["Argentina", "Ciudad Autónoma de Buenos Aires", "Buenos Aires"]
+      },
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      },
+      "contract_type": "permanent",
+      "contract_time": "full_time"
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "4829103888",
+      "title": "Senior Business Intelligence Analyst",
+      "description": "Senior BI Analyst required. Experience with Tableau, Looker, SQL and dimensional modelling. Lead reporting projects and mentor junior analysts.",
+      "created": "2026-07-18T14:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/4829103888",
+      "salary_min": 2000000,
+      "salary_max": 2800000,
+      "salary_is_predicted": 0,
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "DataFlow Consulting"
+      },
+      "location": {
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "display_name": "Córdoba, Córdoba",
+        "area": ["Argentina", "Córdoba", "Córdoba"]
+      },
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      },
+      "contract_type": "permanent"
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "4829104012",
+      "title": "Machine Learning Engineer",
+      "description": "ML Engineer to productionise models. Python, MLflow, Docker, Kubernetes and FastAPI. Collaborate with data scientists on deployment and monitoring.",
+      "created": "2026-07-22T11:30:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/4829104012",
+      "salary_min": null,
+      "salary_max": null,
+      "salary_is_predicted": 1,
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "ModelOps Lab"
+      },
+      "location": {
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "display_name": "Remote",
+        "area": ["Argentina"]
+      },
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      },
+      "contract_type": "permanent",
+      "contract_time": "full_time"
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "4829104155",
+      "title": "Data Engineer",
+      "description": "Data Engineer mid-level. ETL with Airflow, dbt, Spark, SQL and Python. Experience with Snowflake or BigQuery preferred.",
+      "created": "2026-07-19T08:45:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/4829104155",
+      "salary_min": 1500000,
+      "salary_max": 2200000,
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "Pipeline Corp"
+      },
+      "location": {
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "display_name": "Rosario, Santa Fe",
+        "area": ["Argentina", "Santa Fe", "Rosario"]
+      },
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      }
+    }
+  ]
+}

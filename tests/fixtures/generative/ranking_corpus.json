@@ -1,0 +1,218 @@
+[
+  {
+    "id": "python_hash1_correct",
+    "expect": "pass",
+    "description": "Python #1 technical position correct",
+    "analysis": {
+      "summary": "Análisis de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es #1 en el ranking de skills.",
+          "evidence_refs": ["skills.ranking"]
+        },
+        {
+          "text": "SQL ocupa el puesto 2 en skills.ranking.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra limitada a 8 vacantes."],
+      "evidence_refs": ["skills.ranking", "dataset.n_analysis_records"]
+    }
+  },
+  {
+    "id": "python_hash2_incorrect",
+    "expect": "fail",
+    "description": "Python claimed as #2 but is technical #1",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es #2 en skills.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking"]
+    }
+  },
+  {
+    "id": "wrong_ranking_ref",
+    "expect": "fail",
+    "description": "Python #1 cited against roles.ranking only",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es #1.",
+          "evidence_refs": ["roles.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["roles.ranking"]
+    }
+  },
+  {
+    "id": "nonexistent_item",
+    "expect": "fail",
+    "description": "Invented skill as #1",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Quantum es #1 en skills.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking"]
+    }
+  },
+  {
+    "id": "sql_puesto2_correct",
+    "expect": "pass",
+    "description": "SQL puesto 2 correct",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "SQL ocupa el puesto 2.",
+          "evidence_refs": ["skills.ranking"]
+        },
+        {
+          "text": "Python aparece en 5 vacantes.",
+          "evidence_refs": ["skills.python.count"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking", "skills.python.count"]
+    }
+  },
+  {
+    "id": "bi_analyst_rank1",
+    "expect": "pass",
+    "description": "bi_analyst technical rank 1 in roles",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "bi_analyst ocupa el puesto 1 en roles.ranking.",
+          "evidence_refs": ["roles.ranking"]
+        },
+        {
+          "text": "Hay 8 vacantes en la muestra.",
+          "evidence_refs": ["dataset.n_analysis_records"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["roles.ranking"]
+    }
+  },
+  {
+    "id": "ordinal_correct",
+    "expect": "pass",
+    "description": "Python es el primero — technical position 1",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es el primero entre las skills.",
+          "evidence_refs": ["skills.ranking"]
+        },
+        {
+          "text": "SQL rank 2.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking"]
+    }
+  },
+  {
+    "id": "ordinal_incorrect",
+    "expect": "fail",
+    "description": "Python claimed second incorrectly",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es el segundo entre las skills.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking"]
+    }
+  },
+  {
+    "id": "tie_superlative_rejected",
+    "expect": "fail",
+    "description": "Python most frequent skill rejected under count tie",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es la skill más frecuente.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking"]
+    }
+  },
+  {
+    "id": "innocent_hash_not_rank",
+    "expect": "pass",
+    "description": "No ranking claim pattern; plain numeric text",
+    "analysis": {
+      "summary": "Análisis de 8 vacantes del snapshot.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 5 de 8 vacantes (62.5%).",
+          "evidence_refs": [
+            "skills.python.count",
+            "skills.python.pct",
+            "dataset.n_analysis_records"
+          ]
+        }
+      ],
+      "limitations": ["Muestra limitada a 8 vacantes."],
+      "evidence_refs": ["skills.python.count"]
+    }
+  },
+  {
+    "id": "mixed_one_corrupt_rank",
+    "expect": "fail",
+    "description": "Second finding has wrong rank",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es #1.",
+          "evidence_refs": ["skills.ranking"]
+        },
+        {
+          "text": "SQL es #1.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking"]
+    }
+  },
+  {
+    "id": "rank_ok_count_bad",
+    "expect": "fail",
+    "description": "Correct rank but wrong numeric count still fails",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python es #1 y aparece en 6 vacantes.",
+          "evidence_refs": ["skills.ranking", "skills.python.count"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.ranking", "skills.python.count"]
+    }
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 3,
+  "results": [
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7005001",
+      "title": "Data Engineer",
+      "description": "Data Engineer. Airflow, dbt, Spark, SQL and Python. Snowflake or BigQuery.",
+      "created": "2026-07-19T08:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7005001",
+      "company": {"display_name": "Pipeline Corp"},
+      "location": {"display_name": "Rosario, Santa Fe"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7005002",
+      "title": "Senior Data Engineer",
+      "description": "Senior Data Engineer. ETL/ELT, Airflow, Spark and cloud warehouses.",
+      "created": "2026-07-20T13:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7005002",
+      "company": {"display_name": "Cloud Data"},
+      "location": {"display_name": "Buenos Aires"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7003001",
+      "title": "Data Scientist",
+      "description": "Data Scientist. Python, scikit-learn, pandas and statistical modelling. Shorter DS copy.",
+      "created": "2026-07-16T14:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7003001",
+      "company": {"display_name": "AI Labs AR"},
+      "location": {"display_name": "Buenos Aires"}
+    }
+  ]
+}

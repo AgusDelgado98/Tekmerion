@@ -43,6 +43,12 @@ secrets/
 # We keep the small synthetic sample under data/raw/
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/market/
+!data/processed/market/.gitkeep
+
+# Live Adzuna snapshots (ephemeral / potentially large) — keep directory
+data/raw/real/adzuna/*
+!data/raw/real/adzuna/.gitkeep
 
 # Jupyter
 .ipynb_checkpoints/
@@ -52,3 +58,11 @@ data/processed/*
 *.log
 logs/
 .grok/
+
+# Showroom is versioned (portfolio demo)
+!data/showroom/
+!data/showroom/**
+
+# Local processed market snapshots (keep dir; prefer showroom for public demo)
+data/processed/market/*.json
+!data/processed/market/.gitkeep

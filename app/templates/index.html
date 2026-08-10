@@ -5,13 +5,41 @@
 <section class="page-header">
   <h1>Overview</h1>
   <p class="lede">
-    Cadena actual: datos crudos → pipeline → evidencia estructurada.
-    Esta interfaz solo presenta lo que ya calculó la capa de evidencia.
+    Tekmérion analiza señales del mercado laboral Data / BI / AI:
+    convierte vacantes imperfectas en <strong>evidencia determinista</strong>
+    y, opcionalmente, en una narrativa generativa <strong>fundamentada</strong> en esa evidencia.
   </p>
+  {% if dataset_meta and dataset_meta.mode == 'market' and dataset_meta.label and 'Showroom' in dataset_meta.label %}
+  <p class="banner-info">
+    Dataset activo: <strong>Showroom</strong>
+    {% if dataset_meta.country %} · {{ dataset_meta.country|upper }}{% endif %}
+    · {{ dataset_meta.total_records }} vacantes demo.
+    Artefacto offline (no es un snapshot live ni el mercado completo).
+  </p>
+  {% elif dataset_meta and dataset_meta.mode == 'market' %}
+  <p class="banner-info">
+    Market snapshot{% if dataset_meta.country %} · {{ dataset_meta.country|upper }}{% endif %}
+    {% if dataset_meta.retrieved_at %} · {{ dataset_meta.retrieved_at[:10] }}{% endif %}
+    · {{ dataset_meta.total_records }} vacantes.
+    Flask no realiza requests externos.
+  </p>
+  {% else %}
   <p class="banner-warning">
-    ⚠ Estamos usando una <strong>muestra sintética de 17 registros</strong>.
-    Las métricas demuestran el motor; <strong>no</strong> son el mercado laboral real.
+    ⚠ Dataset activo: <strong>muestra sintética</strong>
+    ({{ dataset_meta.total_records if dataset_meta else pipeline.total_input }} registros).
+    Sirve para validar el motor; <strong>no</strong> representa el mercado laboral real.
   </p>
+  {% endif %}
+</section>
+
+<section class="demo-path">
+  <h2>Recorrido sugerido</h2>
+  <ol class="flow-steps">
+    <li><a href="{{ url_for('main.jobs') }}">Vacantes</a> — listado y detalle del dataset activo</li>
+    <li><a href="{{ url_for('main.skills') }}">Skills</a> / <a href="{{ url_for('main.roles') }}">Roles</a> — evidencia determinista</li>
+    <li><a href="{{ url_for('main.analysis') }}">Análisis AI</a> — resumen grounded (solo evidencia)</li>
+    <li><a href="{{ url_for('main.analysis_roles') }}">Comparar roles</a> — shared / exclusive skills + narrativa</li>
+  </ol>
 </section>
 
 <section class="metrics-grid">
@@ -36,57 +64,61 @@
 <div class="two-col">
   <section>
     <h2>Distribución de roles</h2>
-    <table>
-      <thead>
-        <tr><th>Role family</th><th>Cantidad</th><th>Proporción</th></tr>
-      </thead>
-      <tbody>
-        {% for d in role_dist %}
-        <tr>
-          <td><a href="{{ url_for('main.roles', role_family=d.item) }}">{{ d.item }}</a></td>
-          <td>{{ d.count }}</td>
-          <td>{{ '%.1f'|format(d.proportion * 100) }}%</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="bar-chart" aria-label="Role distribution">
+      {% set max_c = role_dist[0].count if role_dist else 1 %}
+      {% for d in role_dist %}
+      <div class="bar-row">
+        <a class="bar-label" href="{{ url_for('main.roles', role_family=d.item) }}">{{ d.item }}</a>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: {{ (d.count / max_c * 100)|round(1) }}%"></div>
+        </div>
+        <span class="bar-value">{{ d.count }} · {{ '%.0f'|format(d.proportion * 100) }}%</span>
+      </div>
+      {% endfor %}
+    </div>
   </section>
 
   <section>
     <h2>Distribución de seniority</h2>
-    <table>
-      <thead>
-        <tr><th>Seniority</th><th>Cantidad</th><th>Proporción</th></tr>
-      </thead>
-      <tbody>
-        {% for d in sen_dist %}
-        <tr>
-          <td>{{ d.item }}</td>
-          <td>{{ d.count }}</td>
-          <td>{{ '%.1f'|format(d.proportion * 100) }}%</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="bar-chart" aria-label="Seniority distribution">
+      {% set max_s = sen_dist[0].count if sen_dist else 1 %}
+      {% for d in sen_dist %}
+      <div class="bar-row">
+        <span class="bar-label">{{ d.item }}</span>
+        <div class="bar-track">
+          <div class="bar-fill bar-fill-alt" style="width: {{ (d.count / max_s * 100)|round(1) }}%"></div>
+        </div>
+        <span class="bar-value">{{ d.count }} · {{ '%.0f'|format(d.proportion * 100) }}%</span>
+      </div>
+      {% endfor %}
+    </div>
   </section>
 </div>
 
 <section>
-  <h2>Top skills (global)</h2>
-  <table>
-    <thead>
-      <tr><th>Skill</th><th>Vacantes</th><th>Proporción</th></tr>
-    </thead>
-    <tbody>
-      {% for s in top_skills %}
-      <tr>
-        <td><code>{{ s.item }}</code></td>
-        <td>{{ s.count }}</td>
-        <td>{{ '%.1f'|format(s.proportion * 100) }}%</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <h2>Top skills</h2>
+  <div class="bar-chart" aria-label="Top skills">
+    {% set max_sk = top_skills[0].count if top_skills else 1 %}
+    {% for s in top_skills %}
+    <div class="bar-row">
+      <span class="bar-label"><code>{{ s.item }}</code></span>
+      <div class="bar-track">
+        <div class="bar-fill" style="width: {{ (s.count / max_sk * 100)|round(1) }}%"></div>
+      </div>
+      <span class="bar-value">{{ s.count }} · {{ '%.0f'|format(s.proportion * 100) }}%</span>
+    </div>
+    {% endfor %}
+  </div>
   <p class="more-link"><a href="{{ url_for('main.skills') }}">Ver todas las skills →</a></p>
 </section>
+
+<aside class="data-notes">
+  <h3>Sobre estos datos</h3>
+  <ul>
+    <li>Tamaño de muestra limitado al dataset activo.</li>
+    <li>Las descripciones de fuentes externas pueden ser snippets incompletos.</li>
+    <li>Ausencia de una skill = no detectada en el texto, no necesariamente “no requerida”.</li>
+    <li>Evidence es determinista; el análisis AI solo interpreta esa evidence.</li>
+  </ul>
+</aside>
 {% endblock %}

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "valid_full",
+    "expect": "pass",
+    "description": "Valid multi-number finding with matching refs",
+    "analysis": {
+      "summary": "Análisis de un market snapshot con 8 vacantes válidas.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 5 de 8 vacantes (62.5%).",
+          "evidence_refs": [
+            "skills.python.count",
+            "skills.python.pct",
+            "dataset.n_analysis_records",
+            "skills.ranking"
+          ]
+        },
+        {
+          "text": "La role family bi_analyst concentra 37.5% de la muestra.",
+          "evidence_refs": ["roles.bi_analyst.pct", "roles.ranking"]
+        }
+      ],
+      "limitations": [
+        "Muestra limitada a 8 vacantes de análisis en esta corrida."
+      ],
+      "evidence_refs": [
+        "skills.python.count",
+        "skills.python.pct",
+        "dataset.n_analysis_records",
+        "skills.ranking",
+        "roles.bi_analyst.pct",
+        "roles.ranking"
+      ]
+    }
+  },
+  {
+    "id": "invented_percent",
+    "expect": "fail",
+    "description": "Percentage not in grounding",
+    "analysis": {
+      "summary": "Resumen del mercado.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 99.9% de las vacantes.",
+          "evidence_refs": ["skills.python.pct", "skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra limitada a 8 vacantes."],
+      "evidence_refs": ["skills.python.pct"]
+    }
+  },
+  {
+    "id": "invented_count",
+    "expect": "fail",
+    "description": "Count not supported by cited refs",
+    "analysis": {
+      "summary": "Resumen del mercado con 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 6 vacantes.",
+          "evidence_refs": ["skills.python.count", "skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 registros."],
+      "evidence_refs": ["skills.python.count"]
+    }
+  },
+  {
+    "id": "invented_denominator",
+    "expect": "fail",
+    "description": "Wrong denominator in X de Y",
+    "analysis": {
+      "summary": "Resumen.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 5 de 10 vacantes.",
+          "evidence_refs": [
+            "skills.python.count",
+            "dataset.n_analysis_records"
+          ]
+        }
+      ],
+      "limitations": ["Muestra limitada."],
+      "evidence_refs": ["skills.python.count"]
+    }
+  },
+  {
+    "id": "correct_pct_wrong_count",
+    "expect": "fail",
+    "description": "Correct percent but wrong count",
+    "analysis": {
+      "summary": "Resumen.",
+      "key_findings": [
+        {
+          "text": "Python está en 62.5% de la muestra pero solo en 3 vacantes.",
+          "evidence_refs": [
+            "skills.python.pct",
+            "skills.python.count"
+          ]
+        }
+      ],
+      "limitations": ["Muestra de 8 registros."],
+      "evidence_refs": ["skills.python.pct"]
+    }
+  },
+  {
+    "id": "wrong_ref_for_count",
+    "expect": "fail",
+    "description": "Count correct for python but cited only bi_analyst.count (value 3)",
+    "analysis": {
+      "summary": "Resumen con 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Se mencionan 5 vacantes para esta métrica.",
+          "evidence_refs": ["roles.bi_analyst.count"]
+        }
+      ],
+      "limitations": ["Muestra limitada a 8 vacantes."],
+      "evidence_refs": ["roles.bi_analyst.count"]
+    }
+  },
+  {
+    "id": "valid_ref_incompatible_number",
+    "expect": "fail",
+    "description": "Valid refs but incompatible number",
+    "analysis": {
+      "summary": "Resumen.",
+      "key_findings": [
+        {
+          "text": "SQL aparece en 50% de las vacantes.",
+          "evidence_refs": ["skills.sql.pct", "skills.ranking"]
+        }
+      ],
+      "limitations": ["8 vacantes en total."],
+      "evidence_refs": ["skills.sql.pct"]
+    }
+  },
+  {
+    "id": "model_version_not_claim",
+    "expect": "pass",
+    "description": "Model name with digits must not be treated as a claim",
+    "analysis": {
+      "summary": "Análisis generado con soporte gpt-4o-mini sobre 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 5 vacantes según la evidencia.",
+          "evidence_refs": ["skills.python.count", "skills.ranking"]
+        }
+      ],
+      "limitations": [
+        "Muestra limitada a 8 vacantes. Prompt market_summary.v2."
+      ],
+      "evidence_refs": ["skills.python.count", "dataset.n_analysis_records"]
+    }
+  },
+  {
+    "id": "timestamp_not_claim",
+    "expect": "pass",
+    "description": "ISO timestamp must not be parsed as numeric claim",
+    "analysis": {
+      "summary": "Snapshot retrieved_at=2026-08-10T19:00:00Z con 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python está presente en 62.5% de las vacantes.",
+          "evidence_refs": ["skills.python.pct", "skills.ranking"]
+        }
+      ],
+      "limitations": [
+        "Snapshot retrieved_at=2026-08-10T19:00:00Z. Muestra de 8 registros."
+      ],
+      "evidence_refs": ["skills.python.pct", "dataset.n_analysis_records"]
+    }
+  },
+  {
+    "id": "one_corrupt_among_valid",
+    "expect": "fail",
+    "description": "Second finding has invented percent",
+    "analysis": {
+      "summary": "Resumen de 8 vacantes.",
+      "key_findings": [
+        {
+          "text": "Python aparece en 5 vacantes.",
+          "evidence_refs": ["skills.python.count"]
+        },
+        {
+          "text": "Un skill inventado alcanza 88% de cobertura.",
+          "evidence_refs": ["skills.ranking"]
+        }
+      ],
+      "limitations": ["Muestra de 8 vacantes."],
+      "evidence_refs": ["skills.python.count", "skills.ranking"]
+    }
+  }
+]

@@ -81,16 +81,28 @@ def _safe_int(value: Any) -> Optional[int]:
 # Duplicate detection (content-based, deterministic)
 # ---------------------------------------------------------------------------
 
-def _content_fingerprint(title: str, company: str, description: str) -> str:
+def _content_fingerprint(
+    title: str,
+    company: str,
+    description: str,
+    source: str = "",
+) -> str:
     """
     Create a stable fingerprint for near-duplicate detection.
-    Uses normalized title + company + a hash of the description.
+
+    Uses source + normalized title + company + a hash of the description.
+
+    Including ``source`` means:
+    - Same content from the *same* source → treated as duplicate (expected).
+    - Same content from *different* sources → independent records for now.
+      Cross-source semantic deduplication is deliberate technical debt.
     """
     norm_title = _normalize_title(title).lower()
     norm_company = company.strip().lower()
+    norm_source = (source or "").strip().lower()
     # Use first 300 chars of description to catch near-identical postings
     desc_part = (description or "")[:300].strip().lower()
-    payload = f"{norm_title}|{norm_company}|{desc_part}"
+    payload = f"{norm_source}|{norm_title}|{norm_company}|{desc_part}"
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
 
 
@@ -115,6 +127,9 @@ def _process_single(
     location = _safe_str(raw.get("location"))
     description = _safe_str(raw.get("description"))
     source = _safe_str(raw.get("source"), default="unknown")
+    source_url = _safe_str(raw.get("source_url")) or None
+    retrieved_at = _safe_str(raw.get("retrieved_at")) or None
+    source_record_id = _safe_str(raw.get("source_record_id")) or None
 
     normalized_title = _normalize_title(title)
 
@@ -125,8 +140,8 @@ def _process_single(
     # Skills from title + description
     skills = extract_skills(f"{title} {description}")
 
-    # Duplicate detection
-    fingerprint = _content_fingerprint(title, company, description)
+    # Duplicate detection (source-aware: cross-source matches stay independent)
+    fingerprint = _content_fingerprint(title, company, description, source=source)
     is_duplicate = False
     duplicate_of: Optional[str] = None
 
@@ -157,6 +172,9 @@ def _process_single(
         validation_errors=tuple(errors),
         is_duplicate=is_duplicate,
         duplicate_of=duplicate_of,
+        source_url=source_url,
+        retrieved_at=retrieved_at,
+        source_record_id=source_record_id,
     )
 
 
@@ -206,6 +224,9 @@ def process_records(records: list[dict[str, Any]]) -> PipelineResult:
                     validation_errors=("record_is_not_a_dict",),
                     is_duplicate=False,
                     duplicate_of=None,
+                    source_url=None,
+                    retrieved_at=None,
+                    source_record_id=None,
                 )
             )
             continue

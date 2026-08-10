@@ -1,0 +1,38 @@
+{
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 3,
+  "results": [
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7003001",
+      "title": "Data Scientist",
+      "description": "Data Scientist. Python, scikit-learn, pandas and statistical modelling.",
+      "created": "2026-07-16T14:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7003001",
+      "company": {"display_name": "AI Labs AR"},
+      "location": {"display_name": "Buenos Aires"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7003002",
+      "title": "Junior Data Scientist",
+      "description": "Junior Data Scientist. Python, statistics and machine learning basics.",
+      "created": "2026-07-14T10:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7003002",
+      "company": {"display_name": "Grad Program"},
+      "location": {"display_name": "Remote"}
+    },
+    {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "id": "7001001",
+      "title": "Data Analyst",
+      "description": "Data Analyst with SQL, Python and Power BI. Build dashboards and analyse product metrics.",
+      "created": "2026-07-20T09:00:00Z",
+      "redirect_url": "https://www.adzuna.com.ar/details/7001001",
+      "salary_min": 1000000,
+      "salary_max": 1500000,
+      "company": {"display_name": "Acme Data"},
+      "location": {"display_name": "Buenos Aires"}
+    }
+  ]
+}

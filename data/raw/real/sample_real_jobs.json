@@ -1,0 +1,58 @@
+[
+  {
+    "id": "meli-da-78421",
+    "title": "Data Analyst",
+    "company": "Mercado Libre",
+    "location": "Buenos Aires, Argentina",
+    "description": "Buscamos Data Analyst con fuerte dominio de SQL, Python y herramientas de visualización (Tableau o Power BI). Responsable de análisis de métricas de producto, construcción de dashboards y comunicación de insights al negocio.",
+    "salary_min": null,
+    "salary_max": null,
+    "currency": null,
+    "posted_date": "2026-07-15",
+    "source": "curated_real_sample",
+    "source_url": "https://example.com/jobs/data-analyst-meli-001",
+    "retrieved_at": "2026-08-01T14:30:00Z"
+  },
+  {
+    "id": "globant-de-55210",
+    "title": "Senior Data Engineer",
+    "company": "Globant",
+    "location": "Remote - Argentina",
+    "description": "Senior Data Engineer. Experiencia en pipelines ETL/ELT con Airflow, dbt, Spark y Python. Diseño de data warehouses en Snowflake o BigQuery. Trabajo en equipo distribuido y buenas prácticas de ingeniería de datos.",
+    "salary_min": 2500000,
+    "salary_max": 3800000,
+    "currency": "ARS",
+    "posted_date": "2026-07-20",
+    "source": "curated_real_sample",
+    "source_url": "https://example.com/jobs/senior-data-engineer-globant-002",
+    "retrieved_at": "2026-08-01T14:30:00Z"
+  },
+  {
+    "id": "galicia-bi-33102",
+    "title": "Business Intelligence Analyst",
+    "company": "Banco Galicia",
+    "location": "CABA, Argentina",
+    "description": "Analista de Business Intelligence. Experiencia en Power BI, DAX, modelado dimensional y SQL. Elaboración de reportes ejecutivos y soporte a áreas de negocio en la interpretación de KPIs.",
+    "salary_min": 1600000,
+    "salary_max": 2200000,
+    "currency": "ARS",
+    "posted_date": "2026-07-28",
+    "source": "curated_real_sample",
+    "source_url": "https://example.com/jobs/bi-analyst-galicia-003",
+    "retrieved_at": "2026-08-01T14:32:00Z"
+  },
+  {
+    "id": "okta-ml-99014",
+    "title": "Machine Learning Engineer",
+    "company": "Auth0 / Okta",
+    "location": "Remote - LATAM",
+    "description": "ML Engineer focused on productionizing models. Strong Python, experience with MLflow, Docker, Kubernetes and FastAPI. Collaboration with data scientists to deploy and monitor ML systems at scale.",
+    "salary_min": null,
+    "salary_max": null,
+    "currency": "USD",
+    "posted_date": "2026-07-10",
+    "source": "curated_real_sample",
+    "source_url": "https://example.com/jobs/ml-engineer-okta-004",
+    "retrieved_at": "2026-08-01T14:35:00Z"
+  }
+]
