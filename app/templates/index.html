@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Overview · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Overview</h1>
+  <p class="lede">
+    Cadena actual: datos crudos → pipeline → evidencia estructurada.
+    Esta interfaz solo presenta lo que ya calculó la capa de evidencia.
+  </p>
+  <p class="banner-warning">
+    ⚠ Estamos usando una <strong>muestra sintética de 17 registros</strong>.
+    Las métricas demuestran el motor; <strong>no</strong> son el mercado laboral real.
+  </p>
+</section>
+
+<section class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-value">{{ pipeline.total_input }}</div>
+    <div class="metric-label">Registros de entrada</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-value">{{ pipeline.valid_count }}</div>
+    <div class="metric-label">Válidos</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-value">{{ evidence.n_analysis_records }}</div>
+    <div class="metric-label">Analizados<br><span class="sub">(válidos no-duplicados)</span></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-value">{{ pipeline.duplicate_count }}</div>
+    <div class="metric-label">Duplicados excluidos</div>
+  </div>
+</section>
+
+<div class="two-col">
+  <section>
+    <h2>Distribución de roles</h2>
+    <table>
+      <thead>
+        <tr><th>Role family</th><th>Cantidad</th><th>Proporción</th></tr>
+      </thead>
+      <tbody>
+        {% for d in role_dist %}
+        <tr>
+          <td><a href="{{ url_for('main.roles', role_family=d.item) }}">{{ d.item }}</a></td>
+          <td>{{ d.count }}</td>
+          <td>{{ '%.1f'|format(d.proportion * 100) }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Distribución de seniority</h2>
+    <table>
+      <thead>
+        <tr><th>Seniority</th><th>Cantidad</th><th>Proporción</th></tr>
+      </thead>
+      <tbody>
+        {% for d in sen_dist %}
+        <tr>
+          <td>{{ d.item }}</td>
+          <td>{{ d.count }}</td>
+          <td>{{ '%.1f'|format(d.proportion * 100) }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<section>
+  <h2>Top skills (global)</h2>
+  <table>
+    <thead>
+      <tr><th>Skill</th><th>Vacantes</th><th>Proporción</th></tr>
+    </thead>
+    <tbody>
+      {% for s in top_skills %}
+      <tr>
+        <td><code>{{ s.item }}</code></td>
+        <td>{{ s.count }}</td>
+        <td>{{ '%.1f'|format(s.proportion * 100) }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="more-link"><a href="{{ url_for('main.skills') }}">Ver todas las skills →</a></p>
+</section>
+{% endblock %}

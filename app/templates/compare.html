@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Comparar roles · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Comparar role families</h1>
+  <p class="lede">Usa la función <code>compare_roles</code> de la capa de evidencia. Sin generación de texto.</p>
+</section>
+
+<section class="filters">
+  <form method="get" action="{{ url_for('main.compare') }}" class="filter-form">
+    <div class="filter-group">
+      <label for="role_a">Role A</label>
+      <select name="role_a" id="role_a" required>
+        <option value="">— elegir —</option>
+        {% for r in available_roles %}
+        <option value="{{ r }}" {% if role_a == r %}selected{% endif %}>{{ r }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="role_b">Role B</label>
+      <select name="role_b" id="role_b" required>
+        <option value="">— elegir —</option>
+        {% for r in available_roles %}
+        <option value="{{ r }}" {% if role_b == r %}selected{% endif %}>{{ r }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit">Comparar</button>
+  </form>
+</section>
+
+{% if error %}
+<p class="flash flash-error">{{ error }}</p>
+{% endif %}
+
+{% if comparison %}
+<section>
+  <h2>{{ comparison.role_a }} <span class="muted">vs</span> {{ comparison.role_b }}</h2>
+  <p>
+    <strong>{{ comparison.count_a }}</strong> registros vs
+    <strong>{{ comparison.count_b }}</strong> registros
+  </p>
+
+  <div class="three-col">
+    <div>
+      <h3>Comunes</h3>
+      {% if comparison.common_skills %}
+      <ul class="skill-tags">
+        {% for s in comparison.common_skills %}
+        <li><code>{{ s }}</code></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="muted">(ninguna)</p>
+      {% endif %}
+    </div>
+    <div>
+      <h3>Solo en {{ comparison.role_a }}</h3>
+      {% if comparison.only_in_a %}
+      <ul class="skill-tags">
+        {% for s in comparison.only_in_a %}
+        <li><code>{{ s }}</code></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="muted">(ninguna)</p>
+      {% endif %}
+    </div>
+    <div>
+      <h3>Solo en {{ comparison.role_b }}</h3>
+      {% if comparison.only_in_b %}
+      <ul class="skill-tags">
+        {% for s in comparison.only_in_b %}
+        <li><code>{{ s }}</code></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="muted">(ninguna)</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top: 2rem;">
+    <section>
+      <h3>Top skills — {{ comparison.role_a }}</h3>
+      <table>
+        <thead><tr><th>Skill</th><th>Count</th></tr></thead>
+        <tbody>
+          {% for s in comparison.top_skills_a %}
+          <tr><td><code>{{ s.item }}</code></td><td>{{ s.count }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h3>Top skills — {{ comparison.role_b }}</h3>
+      <table>
+        <thead><tr><th>Skill</th><th>Count</th></tr></thead>
+        <tbody>
+          {% for s in comparison.top_skills_b %}
+          <tr><td><code>{{ s.item }}</code></td><td>{{ s.count }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

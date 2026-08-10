@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Co-ocurrencia · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Co-ocurrencia de skills</h1>
+  <p class="lede">
+    Pares de skills que aparecen juntos en la misma vacante
+    ({{ n_records }} registros de análisis). Pares no dirigidos.
+  </p>
+</section>
+
+<section>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Skill A</th><th>Skill B</th><th>Vacantes</th></tr>
+    </thead>
+    <tbody>
+      {% for p in pairs %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td><code>{{ p.skill_a }}</code></td>
+        <td><code>{{ p.skill_b }}</code></td>
+        <td>{{ p.count }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No hay pares de co-ocurrencia en la muestra.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

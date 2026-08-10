@@ -160,9 +160,31 @@ Todas las métricas se calculan por ahora sobre la **muestra sintética de 17 re
 Esta muestra sirve para validar el motor analítico.  
 **No** representa el mercado laboral real ni permite conclusiones estadísticas externas.
 
+### Interfaz web (V0.3)
+
+Ubicación: `app/`
+
+Flask solo presenta la evidencia ya calculada.  
+No contiene lógica analítica propia.
+
+Al iniciar la aplicación se ejecuta una sola vez:
+
+```text
+sample_jobs.json → pipeline → EvidenceReport → memoria de la app
+```
+
+Las rutas leen de `app.config["EVIDENCE"]` y `app.config["PIPELINE_RESULT"]`.
+
+Páginas:
+
+- `/` — overview (conteos, distribuciones, top skills)
+- `/skills` — frecuencia global o filtrada por role / seniority
+- `/roles` y `/roles/<family>` — detalle por role family
+- `/compare` — comparación de dos familias vía `compare_roles`
+- `/cooccurrence` — tabla de pares
+
 ### Próximos pasos metodológicos
 
-- Capa Flask para explorar la evidencia de forma interactiva
 - Integración de fuentes reales (Kaggle / Adzuna) manteniendo el mismo contrato de evidencia
 - Capa de IA generativa **solo** sobre evidencia ya calculada (grounded)
 

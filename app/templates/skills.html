@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Skills · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Skills</h1>
+  <p class="lede">Frecuencia de skills sobre los {{ n_records }} registros de análisis (válidos y no-duplicados).</p>
+</section>
+
+<section class="filters">
+  <form method="get" action="{{ url_for('main.skills') }}" class="filter-form">
+    <div class="filter-group">
+      <label for="role">Por role family</label>
+      <select name="role" id="role">
+        <option value="">— Todas —</option>
+        {% for r in role_choices %}
+        <option value="{{ r }}" {% if selected_role == r %}selected{% endif %}>{{ r }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="seniority">Por seniority</label>
+      <select name="seniority" id="seniority">
+        <option value="">— Todas —</option>
+        {% for s in seniority_choices %}
+        <option value="{{ s }}" {% if selected_seniority == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit">Aplicar</button>
+    {% if selected_role or selected_seniority %}
+    <a href="{{ url_for('main.skills') }}" class="btn-secondary">Limpiar</a>
+    {% endif %}
+  </form>
+  <p class="context-label">Mostrando: <strong>{{ context_label }}</strong></p>
+</section>
+
+<section>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Skill</th><th>Vacantes</th><th>Proporción</th></tr>
+    </thead>
+    <tbody>
+      {% for s in skills %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td><code>{{ s.item }}</code></td>
+        <td>{{ s.count }}</td>
+        <td>{{ '%.1f'|format(s.proportion * 100) }}%</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">Sin skills en este contexto.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

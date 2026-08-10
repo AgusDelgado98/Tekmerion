@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Roles · Tekmérion{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Roles</h1>
+  <p class="lede">Exploración por role family. Solo se muestran familias presentes en la muestra de análisis.</p>
+</section>
+
+{% if role_family is none %}
+<section>
+  <h2>Seleccionar role family</h2>
+  <ul class="role-list">
+    {% for d in role_dist %}
+    <li>
+      <a href="{{ url_for('main.roles', role_family=d.item) }}">{{ d.item }}</a>
+      <span class="muted">{{ d.count }} registros ({{ '%.1f'|format(d.proportion * 100) }}%)</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% else %}
+<section class="page-header-sm">
+  <p><a href="{{ url_for('main.roles') }}">← Todas las roles</a></p>
+  <h1><code>{{ role_family }}</code></h1>
+  <p>{{ count }} registro{{ 's' if count != 1 else '' }} de análisis</p>
+</section>
+
+<div class="two-col">
+  <section>
+    <h2>Seniority en esta familia</h2>
+    {% if seniority_in_role %}
+    <table>
+      <thead><tr><th>Seniority</th><th>Cantidad</th></tr></thead>
+      <tbody>
+        {% for s in seniority_in_role %}
+        <tr><td>{{ s.item }}</td><td>{{ s.count }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="muted">Sin datos de seniority.</p>
+    {% endif %}
+  </section>
+
+  <section>
+    <h2>Skills más frecuentes</h2>
+    {% if skills %}
+    <table>
+      <thead><tr><th>Skill</th><th>Vacantes</th><th>Proporción</th></tr></thead>
+      <tbody>
+        {% for s in skills %}
+        <tr>
+          <td><code>{{ s.item }}</code></td>
+          <td>{{ s.count }}</td>
+          <td>{{ '%.1f'|format(s.proportion * 100) }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="muted">Sin skills extraídas para esta familia.</p>
+    {% endif %}
+  </section>
+</div>
+{% endif %}
+{% endblock %}

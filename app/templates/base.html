@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Tekmérion{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="{{ url_for('main.index') }}" class="logo">Tekmérion</a>
+      <nav>
+        <a href="{{ url_for('main.index') }}">Overview</a>
+        <a href="{{ url_for('main.skills') }}">Skills</a>
+        <a href="{{ url_for('main.roles') }}">Roles</a>
+        <a href="{{ url_for('main.compare') }}">Comparar</a>
+        <a href="{{ url_for('main.cooccurrence') }}">Co-ocurrencia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-list">
+          {% for category, message in messages %}
+            <li class="flash flash-{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Tekmérion · Evidence-first · Muestra sintética de desarrollo.
+        Los números no representan el mercado laboral real.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

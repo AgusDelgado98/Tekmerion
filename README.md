@@ -12,13 +12,14 @@ Es una pieza de portfolio y un sistema de análisis diseñado para demostrar com
 
 ---
 
-## Estado actual (V0.2)
+## Estado actual (V0.3)
 
 - Pipeline de procesamiento determinista y no-mutante
 - Clasificación de **role family** y **seniority** por reglas explícitas
 - Extracción y normalización de **skills** como dato estructurado
 - Detección de duplicados por fingerprint de contenido
 - **Capa de evidencia** reproducible: frecuencias, co-ocurrencias, distribuciones y comparación entre roles
+- **Interfaz Flask** para explorar la evidencia (overview, skills, roles, comparación, co-ocurrencia)
 - Suite de tests automatizados
 - Muestra sintética de 17 registros para desarrollo y validación
 - Documentación de metodología + Architecture Decision Records
@@ -26,10 +27,10 @@ Es una pieza de portfolio y un sistema de análisis diseñado para demostrar com
 Flujo actual:
 
 ```text
-raw data → pipeline → structured evidence
+raw data → pipeline → structured evidence → Flask UI
 ```
 
-Todavía **no** incluye Flask ni IA generativa.
+Todavía **no** incluye IA generativa ni fuentes reales (Kaggle / Adzuna).
 
 ---
 
@@ -65,6 +66,10 @@ pytest -v
 # Procesar la muestra sintética + generar evidencia
 python scripts/run_pipeline.py
 python scripts/run_evidence.py
+
+# Iniciar la interfaz web
+python -m app
+# → http://127.0.0.1:5000
 ```
 
 ---
@@ -79,6 +84,11 @@ tekmerion/
 │   ├── models.py        # ProcessedJob, PipelineResult, enums
 │   ├── classifiers.py   # Role family & seniority (reglas)
 │   └── skills.py        # Extracción y normalización de skills
+├── app/                 # Interfaz Flask (solo presentación)
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── templates/
+│   └── static/
 ├── data/
 │   ├── raw/             # Datos de entrada (muestra sintética)
 │   └── processed/       # Salida del pipeline + evidence.json
@@ -108,7 +118,7 @@ tekmerion/
 
 - [x] Pipeline core + tests + documentación base
 - [x] Capa de evidencia reproducible (frecuencias, co-ocurrencias, diferencias entre roles)
-- [ ] Interfaz Flask sencilla para explorar evidencia
+- [x] Interfaz Flask sencilla para explorar evidencia
 - [ ] Capa de IA generativa **grounded** (explica evidencia, no inventa)
 - [ ] Integración con Adzuna API + datasets de Kaggle
 - [ ] Informe / case study en PDF
