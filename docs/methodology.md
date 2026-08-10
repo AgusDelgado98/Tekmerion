@@ -96,11 +96,74 @@ Sirve para:
 - detectar edge cases
 - asegurar reproducibilidad
 
-## Próximos pasos metodológicos (no implementados aún)
+## Capa de evidencia (V0.2)
 
-- Análisis exploratorio reproducible sobre los datos procesados
-- Métricas de evidencia (frecuencias, co-ocurrencias, diferencias entre roles)
-- Capa Flask para exploración
+Ubicación: `analysis/evidence.py`
+
+La evidencia se calcula **exclusivamente** sobre registros ya procesados por el pipeline.
+Esta capa no reclasifica ni re-extrae skills; solo agrega.
+
+### Qué consideramos “evidencia”
+
+Métricas estructuradas, deterministas y auditables que responden preguntas del tipo:
+
+- ¿Qué skills aparecen con mayor frecuencia?
+- ¿Cómo se distribuyen los roles y los niveles de seniority?
+- ¿Qué skills caracterizan a cada role family?
+- ¿Qué pares de skills co-ocurren?
+- ¿Qué diferencia a Data Analyst de BI Analyst (u otras familias)?
+
+### Regla de inclusión (única y consistente)
+
+Solo entran en el análisis los registros que cumplen:
+
+```text
+is_valid is True  AND  is_duplicate is False
+```
+
+- Los inválidos se excluyen porque no pasaron validación básica.
+- Los duplicados se excluyen para no inflar frecuencias contando la misma vacante varias veces.
+- `RoleFamily.UNKNOWN` y `Seniority.UNKNOWN` **sí se incluyen** y aparecen explícitamente en las métricas. No se reasignan.
+
+### Métricas disponibles
+
+| Función                  | Descripción                                      |
+|--------------------------|--------------------------------------------------|
+| `skill_frequency`        | Frecuencia global de skills (+ proporción)       |
+| `skills_by_role`         | Skills más frecuentes por role family            |
+| `skills_by_seniority`    | Skills más frecuentes por seniority              |
+| `role_distribution`      | Cantidad y proporción por role family            |
+| `seniority_distribution` | Cantidad y proporción por seniority              |
+| `skill_cooccurrence`     | Pares de skills que aparecen juntos (no dirigidos)|
+| `compare_roles`          | Comparación entre dos familias (comunes / exclusivas) |
+| `build_evidence`         | Empaqueta todo en un `EvidenceReport`            |
+
+### Cómo se calculan las frecuencias
+
+- Dentro de una vacante, cada skill se cuenta como máximo una vez (set).
+- La proporción de una skill es:  
+  `count(skill) / n_analysis_records`  
+  (no sobre el total de menciones).
+- Ordenamiento determinista: frecuencia descendente → nombre alfabético ascendente.
+
+### Cómo se calcula la co-ocurrencia
+
+- Se generan pares no ordenados `(skill_a, skill_b)` con `skill_a < skill_b` lexicográficamente.
+- Un par se incrementa una vez por cada vacante que contiene ambas skills.
+- No existen pares invertidos (`python+sql` y `sql+python` son el mismo).
+- Ordenamiento: count desc → skill_a asc → skill_b asc.
+
+### Limitación actual de los datos
+
+Todas las métricas se calculan por ahora sobre la **muestra sintética de 17 registros**.
+
+Esta muestra sirve para validar el motor analítico.  
+**No** representa el mercado laboral real ni permite conclusiones estadísticas externas.
+
+### Próximos pasos metodológicos
+
+- Capa Flask para explorar la evidencia de forma interactiva
+- Integración de fuentes reales (Kaggle / Adzuna) manteniendo el mismo contrato de evidencia
 - Capa de IA generativa **solo** sobre evidencia ya calculada (grounded)
 
 ## Principio rector

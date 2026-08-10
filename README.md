@@ -12,15 +12,24 @@ Es una pieza de portfolio y un sistema de análisis diseñado para demostrar com
 
 ---
 
-## Estado actual (V0.1)
+## Estado actual (V0.2)
 
 - Pipeline de procesamiento determinista y no-mutante
 - Clasificación de **role family** y **seniority** por reglas explícitas
 - Extracción y normalización de **skills** como dato estructurado
 - Detección de duplicados por fingerprint de contenido
+- **Capa de evidencia** reproducible: frecuencias, co-ocurrencias, distribuciones y comparación entre roles
 - Suite de tests automatizados
 - Muestra sintética de 17 registros para desarrollo y validación
 - Documentación de metodología + Architecture Decision Records
+
+Flujo actual:
+
+```text
+raw data → pipeline → structured evidence
+```
+
+Todavía **no** incluye Flask ni IA generativa.
 
 ---
 
@@ -53,12 +62,9 @@ pip install -e ".[dev]"
 # Ejecutar tests
 pytest -v
 
-# Procesar la muestra sintética
-python -c "
-from analysis.pipeline import process_file
-result = process_file('data/raw/sample_jobs.json', 'data/processed/sample_processed.json')
-print(result.summary())
-"
+# Procesar la muestra sintética + generar evidencia
+python scripts/run_pipeline.py
+python scripts/run_evidence.py
 ```
 
 ---
@@ -69,12 +75,13 @@ print(result.summary())
 tekmerion/
 ├── analysis/
 │   ├── pipeline.py      # Orquestación del pipeline
+│   ├── evidence.py      # Capa de evidencia y métricas
 │   ├── models.py        # ProcessedJob, PipelineResult, enums
 │   ├── classifiers.py   # Role family & seniority (reglas)
 │   └── skills.py        # Extracción y normalización de skills
 ├── data/
 │   ├── raw/             # Datos de entrada (muestra sintética)
-│   └── processed/       # Salida del pipeline
+│   └── processed/       # Salida del pipeline + evidence.json
 ├── docs/
 │   ├── methodology.md   # Cómo funciona y por qué
 │   └── adr/             # Architecture Decision Records
@@ -100,7 +107,7 @@ tekmerion/
 ## Roadmap (alto nivel)
 
 - [x] Pipeline core + tests + documentación base
-- [ ] Análisis exploratorio reproducible (frecuencias, co-ocurrencias, diferencias entre roles)
+- [x] Capa de evidencia reproducible (frecuencias, co-ocurrencias, diferencias entre roles)
 - [ ] Interfaz Flask sencilla para explorar evidencia
 - [ ] Capa de IA generativa **grounded** (explica evidencia, no inventa)
 - [ ] Integración con Adzuna API + datasets de Kaggle
