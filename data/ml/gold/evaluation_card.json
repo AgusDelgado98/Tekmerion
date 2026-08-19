@@ -1,0 +1,60 @@
+{
+  "schema": "tekmerion.ml.evaluation_card.v1",
+  "redistributed_gold": false,
+  "gold_schema": "tekmerion.ml.gold_dataset.v1",
+  "task": "role_family_classification",
+  "label_field": "gold_role_family",
+  "label_source": "human",
+  "n": 159,
+  "n_train": 112,
+  "n_test": 47,
+  "split_seed": 42,
+  "test_ratio": 0.3,
+  "dataset_sha256": "84ec088563ee71a866948f9754ccb0e0d7b2f762578baf5251051287f638f476",
+  "class_distribution": {
+    "ai_analyst": 11,
+    "bi_analyst": 31,
+    "business_analyst": 50,
+    "data_analyst": 10,
+    "data_engineer": 23,
+    "data_scientist": 13,
+    "ml_engineer": 21
+  },
+  "metrics": {
+    "deterministic_role_family": {
+      "test_accuracy": 0.872,
+      "test_macro_f1": 0.866,
+      "cv_macro_f1": null
+    },
+    "linearsvc": {
+      "test_accuracy": 0.872,
+      "test_macro_f1": 0.816,
+      "cv_macro_f1": 0.788,
+      "params": {
+        "clf__C": 1.0
+      }
+    },
+    "random_forest": {
+      "test_accuracy": 0.830,
+      "test_macro_f1": 0.749,
+      "cv_macro_f1": 0.793,
+      "params": {
+        "clf__max_depth": null,
+        "clf__n_estimators": 50
+      }
+    },
+    "logreg": {
+      "test_accuracy": 0.830,
+      "test_macro_f1": 0.746,
+      "cv_macro_f1": 0.758,
+      "params": {
+        "clf__C": 4.0
+      }
+    }
+  },
+  "promote_ml": false,
+  "chart": "docs/assets/05-rules-vs-ml.png",
+  "sanitized_report": "data/ml/reports/block_b.json",
+  "attribution": "Vacancy data used in the ML evaluation was sourced from The Adzuna API.",
+  "attribution_url": "https://developer.adzuna.com/"
+}

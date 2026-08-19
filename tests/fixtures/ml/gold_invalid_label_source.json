@@ -1,0 +1,9 @@
+{
+  "schema": "tekmerion.ml.gold_dataset.v1",
+  "task": "role_family_classification",
+  "label_field": "gold_role_family",
+  "label_source": "classifier",
+  "label_policy": "invalid on purpose",
+  "limitations": ["invalid"],
+  "records": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "tekmerion.ml.gold_dataset.v1",
+  "task": "role_family_classification",
+  "label_field": "gold_role_family",
+  "label_source": "human",
+  "label_policy": "invalid on purpose",
+  "limitations": ["invalid"],
+  "records": [
+    {
+      "id": "bad_1",
+      "title": "Data Analyst",
+      "description": "SQL and Excel",
+      "gold_role_family": "data_analyst",
+      "role_family": "data_analyst",
+      "label_source": "human",
+      "annotator_id": "test",
+      "labeled_at": "2026-08-19"
+    }
+  ]
+}

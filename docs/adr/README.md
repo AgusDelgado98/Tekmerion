@@ -13,5 +13,8 @@
 | 0013 | Role comparison | Aceptada | 0.5.4 |
 | 0014 | Showroom portfolio demo | Aceptada | 0.6.0 |
 | 0015 | Portfolio packaging | Aceptada | 0.7.0 |
+| 0016 | ML evaluation foundation | Aceptada | 0.8.0 |
+| 0017 | Supervised ML sufficiency gate + Rules vs ML | Aceptada | 0.8.0 |
+| 0018 | Human gold labeling workflow | Aceptada | 0.8.0 |
 
 Los archivos `docs/adr/NNNN-*.md` contienen el detalle.

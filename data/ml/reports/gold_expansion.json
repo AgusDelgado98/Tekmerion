@@ -1,0 +1,90 @@
+{
+  "class_distribution": {
+    "ai_analyst": 11,
+    "bi_analyst": 31,
+    "business_analyst": 50,
+    "data_analyst": 10,
+    "data_engineer": 23,
+    "data_scientist": 13,
+    "ml_engineer": 21
+  },
+  "class_gaps": {},
+  "gate": {
+    "class_distribution": {
+      "ai_analyst": 11,
+      "bi_analyst": 31,
+      "business_analyst": 50,
+      "data_analyst": 10,
+      "data_engineer": 23,
+      "data_scientist": 13,
+      "ml_engineer": 21
+    },
+    "class_gaps": {},
+    "dataset_n": 159,
+    "message": "Gold meets the training gate.",
+    "min_examples_per_class": 10,
+    "min_n_for_training": 100,
+    "n_gap": 0,
+    "singleton_or_sparse_classes": [],
+    "status": "SUFFICIENT",
+    "sufficient_for_training": true
+  },
+  "gold_n": 159,
+  "harvest": {
+    "n_dropped_duplicates": 227,
+    "n_loaded": 755,
+    "n_unique": 528,
+    "n_unique_real_kinds": 493,
+    "sources_used": [
+      "curated_real_sample",
+      "synthetic",
+      "showroom_demo",
+      "adzuna_test_fixture",
+      "adzuna_snapshot"
+    ],
+    "unique_by_source_kind": {
+      "adzuna_snapshot": 489,
+      "adzuna_test_fixture": 20,
+      "curated_real_sample": 4,
+      "synthetic": 15
+    }
+  },
+  "invented_records": false,
+  "live_fetch": {
+    "countries": [
+      "gb"
+    ],
+    "fetched": true,
+    "label_status": "unlabeled",
+    "live_attempted": true,
+    "n_dropped_duplicates_in_fetch": 82,
+    "n_new_unique_adzuna_snapshots": 215,
+    "n_queries_ok": 6,
+    "n_rate_limited": 0,
+    "n_raw_results": 300,
+    "n_requests": 6,
+    "n_snapshots": 6,
+    "n_unique_in_fetch": 218,
+    "queries": [
+      "data analyst",
+      "junior data analyst",
+      "reporting analyst",
+      "data reporting analyst",
+      "analytics analyst",
+      "insights analyst"
+    ],
+    "reason": "ok",
+    "source": "adzuna"
+  },
+  "min_examples_per_class": 10,
+  "min_n_for_training": 100,
+  "n_gap_to_min_n": 0,
+  "schema": "tekmerion.ml.gold_expansion.v1",
+  "session": {
+    "n_labeled": 139,
+    "n_reviewed": 245,
+    "n_skipped": 106
+  },
+  "training_allowed": true,
+  "unlabeled_queue_real": 245
+}

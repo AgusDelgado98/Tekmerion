@@ -59,6 +59,17 @@ data/raw/real/adzuna/*
 logs/
 .grok/
 
+# Local Gold Dataset (Adzuna vacancy text — do not commit)
+data/ml/gold/role_family_v1.json
+data/ml/gold/local/
+data/ml/gold/candidates_unlabeled_v1.json
+data/ml/gold/label_session.json
+data/ml/gold/_review*.json
+data/ml/gold/_all_queue*.json
+data/ml/gold/_print_titles.py
+data/ml/gold/_find_da.py
+.cursor/
+
 # Showroom is versioned (portfolio demo)
 !data/showroom/
 !data/showroom/**

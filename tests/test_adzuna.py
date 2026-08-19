@@ -54,6 +54,7 @@ def test_credentials_from_env(monkeypatch):
     assert creds.api_key == "key-secret"
     # Secrets must not appear in repr
     assert "key-secret" not in repr(creds)
+    assert "app-123" not in repr(creds)
     assert "***" in repr(creds)
 
 

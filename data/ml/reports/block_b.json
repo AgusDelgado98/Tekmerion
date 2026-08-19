@@ -1,0 +1,1701 @@
+{
+  "artifacts": [
+    "data/ml/artifacts/evaluation_manifest.json",
+    "data/ml/artifacts/evaluation_manifest_logreg.json",
+    "data/ml/artifacts/evaluation_manifest_linearsvc.json",
+    "data/ml/artifacts/evaluation_manifest_random_forest.json"
+  ],
+  "baseline_manifest_excerpt": {
+    "metrics": {
+      "accuracy": 0.8723404255319149,
+      "confusion_matrix": [
+        [
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "labels": [
+        "data_analyst",
+        "bi_analyst",
+        "data_scientist",
+        "ml_engineer",
+        "ai_analyst",
+        "data_engineer",
+        "business_analyst",
+        "unknown"
+      ],
+      "macro_f1": 0.8658974700991509,
+      "macro_f1_all_labels": 0.757660286336757,
+      "n": 47,
+      "per_class": {
+        "ai_analyst": {
+          "f1": 0.5,
+          "precision": 0.5,
+          "recall": 0.5,
+          "support": 2
+        },
+        "bi_analyst": {
+          "f1": 0.9411764705882353,
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "support": 8
+        },
+        "business_analyst": {
+          "f1": 0.962962962962963,
+          "precision": 1.0,
+          "recall": 0.9285714285714286,
+          "support": 14
+        },
+        "data_analyst": {
+          "f1": 0.8571428571428571,
+          "precision": 1.0,
+          "recall": 0.75,
+          "support": 4
+        },
+        "data_engineer": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 8
+        },
+        "data_scientist": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "ml_engineer": {
+          "f1": 0.8,
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "support": 9
+        },
+        "unknown": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        }
+      }
+    },
+    "predictor": {
+      "kind": "baseline_rules",
+      "name": "deterministic_role_family"
+    },
+    "schema": "tekmerion.ml.evaluation_manifest.v1"
+  },
+  "dataset_n": 159,
+  "dataset_path": "data/ml/gold/role_family_v1.json",
+  "dataset_sha256": "84ec088563ee71a866948f9754ccb0e0d7b2f762578baf5251051287f638f476",
+  "gate": {
+    "class_distribution": {
+      "ai_analyst": 11,
+      "bi_analyst": 31,
+      "business_analyst": 50,
+      "data_analyst": 10,
+      "data_engineer": 23,
+      "data_scientist": 13,
+      "ml_engineer": 21
+    },
+    "class_gaps": {},
+    "dataset_n": 159,
+    "message": "Gold meets the training gate.",
+    "min_examples_per_class": 10,
+    "min_n_for_training": 100,
+    "n_gap": 0,
+    "singleton_or_sparse_classes": [],
+    "status": "SUFFICIENT",
+    "sufficient_for_training": true,
+    "unlabeled_unique_candidates": 528
+  },
+  "harvest": {
+    "limitations": [
+      "Offline harvest only; no live Adzuna call in this path.",
+      "Showroom and test fixtures are not live market snapshots.",
+      "Unique N after dedupe is the upper bound for new human labels without a live fetch."
+    ],
+    "n_dropped_duplicates": 227,
+    "n_loaded": 755,
+    "n_unique": 528,
+    "sources_used": [
+      "curated_real_sample",
+      "synthetic",
+      "showroom_demo",
+      "adzuna_test_fixture",
+      "adzuna_snapshot"
+    ],
+    "unique_by_source_kind": {
+      "adzuna_snapshot": 489,
+      "adzuna_test_fixture": 20,
+      "curated_real_sample": 4,
+      "synthetic": 15
+    }
+  },
+  "limitations": [
+    "n=159 human labels; n>=100 and >=10 per present class. Block B ran sklearn vs rules; promote_ml=false.",
+    "Adzuna gold text is API search snippets (typically <=500 characters), not full job descriptions. Raw snapshots are gitignored.",
+    "Course ads, mixed titles, and ambiguous postings were skipped rather than forced.",
+    "Showroom and Adzuna test fixtures are unlabeled harvest only.",
+    "job_001 and job_013 are near-duplicates; the grouped split keeps them on the same side.",
+    "Invalid sample job_015 (empty title) is excluded."
+  ],
+  "models": [
+    {
+      "cv_macro_f1": null,
+      "kind": "baseline_rules",
+      "name": "deterministic_role_family",
+      "params": {},
+      "test_accuracy": 0.8723404255319149,
+      "test_macro_f1": 0.8658974700991509,
+      "test_macro_f1_all_labels": 0.757660286336757
+    },
+    {
+      "cv_macro_f1": 0.7580985650965367,
+      "kind": "ml_sklearn",
+      "name": "logreg",
+      "params": {
+        "clf__C": 4.0
+      },
+      "test_accuracy": 0.8297872340425532,
+      "test_macro_f1": 0.745578231292517,
+      "test_macro_f1_all_labels": 0.6523809523809524
+    },
+    {
+      "cv_macro_f1": 0.7876939664754791,
+      "kind": "ml_sklearn",
+      "name": "linearsvc",
+      "params": {
+        "clf__C": 1.0
+      },
+      "test_accuracy": 0.8723404255319149,
+      "test_macro_f1": 0.8160997732426304,
+      "test_macro_f1_all_labels": 0.7140873015873016
+    },
+    {
+      "cv_macro_f1": 0.7934114781405421,
+      "kind": "ml_sklearn",
+      "name": "random_forest",
+      "params": {
+        "clf__max_depth": null,
+        "clf__n_estimators": 50
+      },
+      "test_accuracy": 0.8297872340425532,
+      "test_macro_f1": 0.7493797519007603,
+      "test_macro_f1_all_labels": 0.6557072829131653
+    }
+  ],
+  "models_detail": [
+    {
+      "cv_macro_f1": null,
+      "errors": [
+        {
+          "gold_role_family": "business_analyst",
+          "id": "ex_9eb7d7e5b838",
+          "predicted": "ai_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_b332fe31bfb5",
+          "predicted": "unknown"
+        },
+        {
+          "gold_role_family": "data_analyst",
+          "id": "ex_5c1053d3e457",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_8c34fe750409",
+          "predicted": "unknown"
+        },
+        {
+          "gold_role_family": "ai_analyst",
+          "id": "ex_15c218c18c67",
+          "predicted": "unknown"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_22838aa8c5ce",
+          "predicted": "unknown"
+        }
+      ],
+      "kind": "baseline_rules",
+      "name": "deterministic_role_family",
+      "params": {},
+      "test": {
+        "metrics": {
+          "accuracy": 0.8723404255319149,
+          "confusion_matrix": [
+            [
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              8,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "labels": [
+            "data_analyst",
+            "bi_analyst",
+            "data_scientist",
+            "ml_engineer",
+            "ai_analyst",
+            "data_engineer",
+            "business_analyst",
+            "unknown"
+          ],
+          "macro_f1": 0.8658974700991509,
+          "macro_f1_all_labels": 0.757660286336757,
+          "n": 47,
+          "per_class": {
+            "ai_analyst": {
+              "f1": 0.5,
+              "precision": 0.5,
+              "recall": 0.5,
+              "support": 2
+            },
+            "bi_analyst": {
+              "f1": 0.9411764705882353,
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "support": 8
+            },
+            "business_analyst": {
+              "f1": 0.962962962962963,
+              "precision": 1.0,
+              "recall": 0.9285714285714286,
+              "support": 14
+            },
+            "data_analyst": {
+              "f1": 0.8571428571428571,
+              "precision": 1.0,
+              "recall": 0.75,
+              "support": 4
+            },
+            "data_engineer": {
+              "f1": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 8
+            },
+            "data_scientist": {
+              "f1": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 2
+            },
+            "ml_engineer": {
+              "f1": 0.8,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "support": 9
+            },
+            "unknown": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        },
+        "predictor_kind": "baseline_rules",
+        "predictor_name": "deterministic_role_family",
+        "y_pred": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "ml_engineer",
+          "unknown",
+          "data_engineer",
+          "data_engineer",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "bi_analyst",
+          "unknown",
+          "unknown",
+          "unknown",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ],
+        "y_true": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "ml_engineer",
+          "data_engineer",
+          "data_engineer",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "data_analyst",
+          "ml_engineer",
+          "ai_analyst",
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ]
+      }
+    },
+    {
+      "cv": {
+        "scoring": "f1_macro",
+        "seed": 42,
+        "splits": 3
+      },
+      "cv_macro_f1": 0.7580985650965367,
+      "errors": [
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_b332fe31bfb5",
+          "predicted": "data_scientist"
+        },
+        {
+          "gold_role_family": "data_engineer",
+          "id": "ex_2e3c2cfe5dfd",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "data_scientist",
+          "id": "ex_5bd4ef14aae4",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "business_analyst",
+          "id": "ex_06a9697586dc",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "data_analyst",
+          "id": "ex_5c1053d3e457",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_8c34fe750409",
+          "predicted": "data_scientist"
+        },
+        {
+          "gold_role_family": "ai_analyst",
+          "id": "ex_15c218c18c67",
+          "predicted": "business_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_22838aa8c5ce",
+          "predicted": "ai_analyst"
+        }
+      ],
+      "kind": "ml_sklearn",
+      "name": "logreg",
+      "params": {
+        "clf__C": 4.0
+      },
+      "test": {
+        "metrics": {
+          "accuracy": 0.8297872340425532,
+          "confusion_matrix": [
+            [
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              6,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "labels": [
+            "data_analyst",
+            "bi_analyst",
+            "data_scientist",
+            "ml_engineer",
+            "ai_analyst",
+            "data_engineer",
+            "business_analyst",
+            "unknown"
+          ],
+          "macro_f1": 0.745578231292517,
+          "macro_f1_all_labels": 0.6523809523809524,
+          "n": 47,
+          "per_class": {
+            "ai_analyst": {
+              "f1": 0.5,
+              "precision": 0.5,
+              "recall": 0.5,
+              "support": 2
+            },
+            "bi_analyst": {
+              "f1": 0.8,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "support": 8
+            },
+            "business_analyst": {
+              "f1": 0.9285714285714286,
+              "precision": 0.9285714285714286,
+              "recall": 0.9285714285714286,
+              "support": 14
+            },
+            "data_analyst": {
+              "f1": 0.8571428571428571,
+              "precision": 1.0,
+              "recall": 0.75,
+              "support": 4
+            },
+            "data_engineer": {
+              "f1": 0.9333333333333333,
+              "precision": 1.0,
+              "recall": 0.875,
+              "support": 8
+            },
+            "data_scientist": {
+              "f1": 0.4,
+              "precision": 0.3333333333333333,
+              "recall": 0.5,
+              "support": 2
+            },
+            "ml_engineer": {
+              "f1": 0.8,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "support": 9
+            },
+            "unknown": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        },
+        "predictor_kind": "ml_sklearn",
+        "predictor_name": "logreg",
+        "y_pred": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "bi_analyst",
+          "data_scientist",
+          "business_analyst",
+          "ai_analyst",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ],
+        "y_true": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "ml_engineer",
+          "data_engineer",
+          "data_engineer",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "data_analyst",
+          "ml_engineer",
+          "ai_analyst",
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ]
+      },
+      "vectorizer": {
+        "base_feature_version": "tekmerion.ml.features.v1",
+        "corpus_statistics": "fit_on_current_X_only",
+        "fields": [
+          "title",
+          "description",
+          "skills_extracted"
+        ],
+        "skill_vocab_size": 28,
+        "tfidf_max_features": 4000,
+        "tfidf_ngram_range": [
+          1,
+          2
+        ],
+        "version": "tekmerion.ml.features.v2_tfidf_skills"
+      }
+    },
+    {
+      "cv": {
+        "scoring": "f1_macro",
+        "seed": 42,
+        "splits": 3
+      },
+      "cv_macro_f1": 0.7876939664754791,
+      "errors": [
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_b332fe31bfb5",
+          "predicted": "data_scientist"
+        },
+        {
+          "gold_role_family": "business_analyst",
+          "id": "ex_06a9697586dc",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "data_analyst",
+          "id": "ex_5c1053d3e457",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_8c34fe750409",
+          "predicted": "data_scientist"
+        },
+        {
+          "gold_role_family": "ai_analyst",
+          "id": "ex_15c218c18c67",
+          "predicted": "business_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_22838aa8c5ce",
+          "predicted": "data_scientist"
+        }
+      ],
+      "kind": "ml_sklearn",
+      "name": "linearsvc",
+      "params": {
+        "clf__C": 1.0
+      },
+      "test": {
+        "metrics": {
+          "accuracy": 0.8723404255319149,
+          "confusion_matrix": [
+            [
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              3,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              8,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "labels": [
+            "data_analyst",
+            "bi_analyst",
+            "data_scientist",
+            "ml_engineer",
+            "ai_analyst",
+            "data_engineer",
+            "business_analyst",
+            "unknown"
+          ],
+          "macro_f1": 0.8160997732426304,
+          "macro_f1_all_labels": 0.7140873015873016,
+          "n": 47,
+          "per_class": {
+            "ai_analyst": {
+              "f1": 0.6666666666666666,
+              "precision": 1.0,
+              "recall": 0.5,
+              "support": 2
+            },
+            "bi_analyst": {
+              "f1": 0.888888888888889,
+              "precision": 0.8,
+              "recall": 1.0,
+              "support": 8
+            },
+            "business_analyst": {
+              "f1": 0.9285714285714286,
+              "precision": 0.9285714285714286,
+              "recall": 0.9285714285714286,
+              "support": 14
+            },
+            "data_analyst": {
+              "f1": 0.8571428571428571,
+              "precision": 1.0,
+              "recall": 0.75,
+              "support": 4
+            },
+            "data_engineer": {
+              "f1": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 8
+            },
+            "data_scientist": {
+              "f1": 0.5714285714285715,
+              "precision": 0.4,
+              "recall": 1.0,
+              "support": 2
+            },
+            "ml_engineer": {
+              "f1": 0.8,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "support": 9
+            },
+            "unknown": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        },
+        "predictor_kind": "ml_sklearn",
+        "predictor_name": "linearsvc",
+        "y_pred": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "data_scientist",
+          "data_engineer",
+          "data_engineer",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "bi_analyst",
+          "data_scientist",
+          "business_analyst",
+          "data_scientist",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ],
+        "y_true": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "ml_engineer",
+          "data_engineer",
+          "data_engineer",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "data_analyst",
+          "ml_engineer",
+          "ai_analyst",
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ]
+      },
+      "vectorizer": {
+        "base_feature_version": "tekmerion.ml.features.v1",
+        "corpus_statistics": "fit_on_current_X_only",
+        "fields": [
+          "title",
+          "description",
+          "skills_extracted"
+        ],
+        "skill_vocab_size": 28,
+        "tfidf_max_features": 4000,
+        "tfidf_ngram_range": [
+          1,
+          2
+        ],
+        "version": "tekmerion.ml.features.v2_tfidf_skills"
+      }
+    },
+    {
+      "cv": {
+        "scoring": "f1_macro",
+        "seed": 42,
+        "splits": 3
+      },
+      "cv_macro_f1": 0.7934114781405421,
+      "errors": [
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_b332fe31bfb5",
+          "predicted": "ai_analyst"
+        },
+        {
+          "gold_role_family": "data_engineer",
+          "id": "ex_2e3c2cfe5dfd",
+          "predicted": "data_scientist"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_4c06bcf22788",
+          "predicted": "data_engineer"
+        },
+        {
+          "gold_role_family": "data_analyst",
+          "id": "ex_5c1053d3e457",
+          "predicted": "bi_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_8c34fe750409",
+          "predicted": "data_engineer"
+        },
+        {
+          "gold_role_family": "ai_analyst",
+          "id": "ex_15c218c18c67",
+          "predicted": "business_analyst"
+        },
+        {
+          "gold_role_family": "ml_engineer",
+          "id": "ex_22838aa8c5ce",
+          "predicted": "business_analyst"
+        },
+        {
+          "gold_role_family": "data_analyst",
+          "id": "ex_3d21c8155b8a",
+          "predicted": "data_scientist"
+        }
+      ],
+      "kind": "ml_sklearn",
+      "name": "random_forest",
+      "params": {
+        "clf__max_depth": null,
+        "clf__n_estimators": 50
+      },
+      "test": {
+        "metrics": {
+          "accuracy": 0.8297872340425532,
+          "confusion_matrix": [
+            [
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              5,
+              1,
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              14,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "labels": [
+            "data_analyst",
+            "bi_analyst",
+            "data_scientist",
+            "ml_engineer",
+            "ai_analyst",
+            "data_engineer",
+            "business_analyst",
+            "unknown"
+          ],
+          "macro_f1": 0.7493797519007603,
+          "macro_f1_all_labels": 0.6557072829131653,
+          "n": 47,
+          "per_class": {
+            "ai_analyst": {
+              "f1": 0.5,
+              "precision": 0.5,
+              "recall": 0.5,
+              "support": 2
+            },
+            "bi_analyst": {
+              "f1": 0.9411764705882353,
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "support": 8
+            },
+            "business_analyst": {
+              "f1": 0.9333333333333333,
+              "precision": 0.875,
+              "recall": 1.0,
+              "support": 14
+            },
+            "data_analyst": {
+              "f1": 0.6666666666666666,
+              "precision": 1.0,
+              "recall": 0.5,
+              "support": 4
+            },
+            "data_engineer": {
+              "f1": 0.823529411764706,
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "support": 8
+            },
+            "data_scientist": {
+              "f1": 0.6666666666666666,
+              "precision": 0.5,
+              "recall": 1.0,
+              "support": 2
+            },
+            "ml_engineer": {
+              "f1": 0.7142857142857143,
+              "precision": 1.0,
+              "recall": 0.5555555555555556,
+              "support": 9
+            },
+            "unknown": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        },
+        "predictor_kind": "ml_sklearn",
+        "predictor_name": "random_forest",
+        "y_pred": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "ai_analyst",
+          "data_scientist",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_scientist",
+          "data_analyst",
+          "ml_engineer"
+        ],
+        "y_true": [
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "bi_analyst",
+          "bi_analyst",
+          "bi_analyst",
+          "business_analyst",
+          "ml_engineer",
+          "ml_engineer",
+          "data_engineer",
+          "data_engineer",
+          "ml_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "data_engineer",
+          "business_analyst",
+          "data_engineer",
+          "data_engineer",
+          "data_scientist",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "bi_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "business_analyst",
+          "data_engineer",
+          "business_analyst",
+          "ml_engineer",
+          "data_engineer",
+          "data_analyst",
+          "ml_engineer",
+          "ai_analyst",
+          "ml_engineer",
+          "business_analyst",
+          "bi_analyst",
+          "ai_analyst",
+          "data_analyst",
+          "data_analyst",
+          "data_analyst",
+          "ml_engineer"
+        ]
+      },
+      "vectorizer": {
+        "base_feature_version": "tekmerion.ml.features.v1",
+        "corpus_statistics": "fit_on_current_X_only",
+        "fields": [
+          "title",
+          "description",
+          "skills_extracted"
+        ],
+        "skill_vocab_size": 28,
+        "tfidf_max_features": 4000,
+        "tfidf_ngram_range": [
+          1,
+          2
+        ],
+        "version": "tekmerion.ml.features.v2_tfidf_skills"
+      }
+    }
+  ],
+  "productive_integration": {
+    "evidence": false,
+    "flask": false,
+    "pipeline": false
+  },
+  "schema": "tekmerion.ml.rules_vs_ml.v1",
+  "seed": 42,
+  "split": {
+    "grouped_by": "content_fingerprint",
+    "n_test": 47,
+    "n_train": 112,
+    "seed": 42,
+    "strategy": "grouped_shuffle_by_content_fingerprint",
+    "test_ids": [
+      "ex_c8bb107e78b4",
+      "ex_43e4b296203d",
+      "ex_7f775b2f1ae5",
+      "ex_d98d6142d944",
+      "ex_bc6aa94b84c7",
+      "ex_0626894f0166",
+      "ex_32bc9005d80e",
+      "ex_c8d41eb2ffea",
+      "ex_9eb7d7e5b838",
+      "ex_82c1364241a1",
+      "ex_b332fe31bfb5",
+      "ex_2e3c2cfe5dfd",
+      "ex_c7b543b25e19",
+      "ex_4c06bcf22788",
+      "ex_5bd4ef14aae4",
+      "ex_d62400b8c071",
+      "ex_8494c6e96786",
+      "ex_94b12f44b8c3",
+      "ex_524e498426c0",
+      "ex_860a6fddea70",
+      "ex_6c712df97097",
+      "ex_410564a7944a",
+      "ex_06a9697586dc",
+      "ex_6ab4a1684976",
+      "ex_82cd2f7ede7b",
+      "ex_80a7e06ce3dd",
+      "ex_96ffefe544ff",
+      "ex_5559a334d431",
+      "ex_1ebb8890a9f0",
+      "ex_49092a1753c0",
+      "ex_c0453899abfa",
+      "ex_800510e27792",
+      "ex_62316567de7a",
+      "ex_77fee1a17dbc",
+      "ex_981addc0c8a8",
+      "ex_cdd197690f25",
+      "ex_5c1053d3e457",
+      "ex_8c34fe750409",
+      "ex_15c218c18c67",
+      "ex_22838aa8c5ce",
+      "ex_509779700a3b",
+      "ex_b11147d22d27",
+      "ex_7846c882f3b9",
+      "ex_208e7cf2d70e",
+      "ex_3d21c8155b8a",
+      "ex_01379c0a9da7",
+      "ex_490bf9658b2c"
+    ],
+    "test_ratio": 0.3,
+    "train_ids": [
+      "ex_0890b9b67a24",
+      "ex_1b2827caeb18",
+      "ex_932f2a57e2f7",
+      "ex_bd109f8979ea",
+      "ex_31dbc72d5542",
+      "ex_0002a4889530",
+      "ex_f4da85d1433c",
+      "ex_d17a5c42c387",
+      "ex_467d9a260fd1",
+      "ex_a3b35cea05f9",
+      "ex_27b5347c2340",
+      "ex_59659d5ba59b",
+      "ex_9f6df6b79079",
+      "ex_06415d03ade7",
+      "ex_851f5399ec37",
+      "ex_d89d4be06ef1",
+      "ex_c9c6abdafd2d",
+      "ex_2da44b6d6a2e",
+      "ex_a8f9817dd9e4",
+      "ex_cbd938b17caf",
+      "ex_da62767570ff",
+      "ex_16a3f0b62cfa",
+      "ex_210af35651a3",
+      "ex_b15aa677596f",
+      "ex_985d275f70f7",
+      "ex_349ead9eb0ca",
+      "ex_8dd01b1b3665",
+      "ex_4b570d3a673f",
+      "ex_0a39b1de6dbb",
+      "ex_523f04a74786",
+      "ex_08445584f3f1",
+      "ex_60531f5b2e12",
+      "ex_bf23295fe0ce",
+      "ex_61e1347a1897",
+      "ex_7040161ad99a",
+      "ex_6d817540582f",
+      "ex_64cff8e7e074",
+      "ex_e613a8f7f40a",
+      "ex_bf79c7741820",
+      "ex_737612f8dd6e",
+      "ex_5dea060a5cbe",
+      "ex_23826021c9b6",
+      "ex_10835f77008a",
+      "ex_76f550008665",
+      "ex_26b806ca63f2",
+      "ex_5b5cfe3d27b0",
+      "ex_8a3131455db6",
+      "ex_e12072137e54",
+      "ex_91b85280f844",
+      "ex_4fa4a5dba329",
+      "ex_8412cdbf3378",
+      "ex_7b4d0d193208",
+      "ex_c0349aedd5f1",
+      "ex_fd84389b8a7b",
+      "ex_173a742ba98b",
+      "ex_d5dec69bdca4",
+      "ex_4ac60ed1eea6",
+      "ex_e353bf0169d3",
+      "ex_c27400edb59c",
+      "ex_9a377574c6c3",
+      "ex_791ef3895b45",
+      "ex_50275e63e4f7",
+      "ex_c563d99860ae",
+      "ex_58a67f3c3dbb",
+      "ex_1b31b85e3997",
+      "ex_5eb08c9ecc60",
+      "ex_9252ecd76439",
+      "ex_e10a3fe77e54",
+      "ex_6d42091afcb6",
+      "ex_c810b26292e8",
+      "ex_a555b3dd28eb",
+      "ex_a7a66363845c",
+      "ex_1fdbeaf82253",
+      "ex_b4600ec816b2",
+      "ex_f7631452b920",
+      "ex_b330581b6601",
+      "ex_f6d8193126a2",
+      "ex_1108c1e6e679",
+      "ex_e5d77191968c",
+      "ex_01b7f1862ecd",
+      "ex_6ce2c3c60733",
+      "ex_d50bf31aaf1b",
+      "ex_3432a7760290",
+      "ex_1ac5735c6036",
+      "ex_bc5f91ca4d78",
+      "ex_382386616877",
+      "ex_845f9ff0a529",
+      "ex_97c593e951e6",
+      "ex_fe15f427aa94",
+      "ex_c1ee36a5f2f0",
+      "ex_b3a58bfb7dbc",
+      "ex_9964455e1412",
+      "ex_fec5be9e7d05",
+      "ex_cb7c15cfb892",
+      "ex_90cd93629ce4",
+      "ex_856ec7e97e6d",
+      "ex_f3ceac9ed4b7",
+      "ex_bc242bf026b0",
+      "ex_1cb26e9c2d0f",
+      "ex_584f850bd436",
+      "ex_121d207e91f2",
+      "ex_0c3e712c9ec8",
+      "ex_81e992fb200b",
+      "ex_0f5e3a889474",
+      "ex_e26174767bd3",
+      "ex_1d1dd9851c01",
+      "ex_810c486743ca",
+      "ex_bdb005173929",
+      "ex_201ceac93030",
+      "ex_06eaf783f518",
+      "ex_2b94edaf541f",
+      "ex_74c2910cae18"
+    ],
+    "warnings": []
+  },
+  "status": "SUFFICIENT",
+  "training_ran": true,
+  "training_skipped_reason": null,
+  "winner": {
+    "accuracy": 0.8723404255319149,
+    "criterion": "macro_f1 then accuracy on held-out test",
+    "kind": "baseline_rules",
+    "macro_f1": 0.8658974700991509,
+    "macro_f1_delta_vs_rules": -0.04979769685652047,
+    "min_macro_f1_delta_to_promote": 0.02,
+    "ml_beats_baseline": false,
+    "name": "deterministic_role_family",
+    "note": "Do not promote ML: it does not beat classify_role_family on test macro F1.",
+    "promote_ml": false
+  }
+}

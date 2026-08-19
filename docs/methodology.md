@@ -1,4 +1,4 @@
-# Metodología — Tekmérion V1
+# Metodología — Tekmérion V0.8
 
 ## Filosofía
 
@@ -13,7 +13,8 @@ Datos crudos
   → extracción de skills estructuradas
   → detección de duplicados
   → evidencia calculada
-  → (futuro) interpretación con IA fundamentada
+  → interpretación grounded (opcional) con guardrails
+  → evaluación ML offline (opcional; no está en Evidence)
 ```
 
 La fuente primaria de verdad son los datos transformados de forma reproducible, no el lenguaje natural de un modelo.
@@ -157,6 +158,7 @@ is_valid is True  AND  is_duplicate is False
 Todas las métricas se calculan por ahora sobre la **muestra sintética de 17 registros**.
 
 Esta muestra sirve para validar el motor analítico.  
+No se usa como Gold de ML (el gold vive en `data/ml/gold/`).  
 **No** representa el mercado laboral real ni permite conclusiones estadísticas externas.
 
 ### Interfaz web (V0.3)
@@ -304,6 +306,48 @@ EvidenceReport
 
 La IA redacta; no calcula shared/exclusive ni recomienda carreras.
 
+### Applied ML (V0.8)
+
+Capa offline `analysis/ml/`. **No** modifica Evidence ni el pipeline productivo.
+
+Bloque A: contrato de evaluación (gold humano, split anti-leakage, métricas, baseline).
+Bloque B: harvest + gate; sklearn **solo** si n≥100 y ≥10 por clase; comparación Rules vs LogReg / Linear SVM / RF.
+
+```text
+Gold Dataset (human gold_role_family)
+  → grouped train/test split (seed fija, fingerprint de título+descripción)
+  → TF-IDF + skills fit en train / fold de CV
+  → predictor.predict(test)    # rules o sklearn
+  → métricas comunes + evaluation manifest
+```
+
+- Contrato público: `tekmerion.ml.gold_dataset.v1` (`analysis/ml/models.py`, fixtures en `tests/fixtures/ml/`).
+- El corpus etiquetado real (n=159) **no se redistribuye**. Queda local/gitignored (`data/ml/gold/role_family_v1.json` y `data/ml/gold/local/`).
+- Tarjeta pública: `data/ml/gold/evaluation_card.json` (n=159, ≥10/clase, split 112/47, seed 42, dataset hash).
+- Reportes sanitizados: `data/ml/reports/block_b.json` y `data/ml/artifacts/evaluation_manifest*.json` (ids `ex_*`, sin títulos/empresas/snippets/URLs).
+- `gold_role_family` con `label_source=human`. Prohibido copiar `ProcessedJob.role_family` o la regex.
+- Métrica de promoción: **macro F1** en test. Accuracy se reporta pero no decide.
+- Resultado: Rules 0.866 vs Linear SVM 0.816 → **`promote_ml=false`**.
+- sklearn extra `ml`/`dev`. Flask/Evidence no cargan modelos.
+
+Vacancy data used in the ML evaluation was sourced from [The Adzuna API](https://developer.adzuna.com/).
+
+Código, metodología, fixtures y artifacts de evaluación son públicos. El corpus real completo no.
+
+CLI (evaluación publicada; no requiere gold local ni credenciales):
+
+```bash
+pytest -q
+```
+
+Reentrenamiento sobre el gold local (solo si el archivo gitignored está presente):
+
+```bash
+python scripts/eval_ml_baseline.py
+python scripts/run_ml_block_b.py --no-harvest-file
+python scripts/label_gold.py --show-next
+```
+
 ### Portfolio packaging (V0.7.0)
 
 Demo scripts (`scripts/run_demo.ps1` / `.sh`), LICENSE MIT, case study, assets folder for screenshots.
@@ -372,10 +416,8 @@ Sin API key el resto de Tekmérion sigue intacto.
 
 ### Próximos pasos metodológicos
 
-- Selector interactivo de dataset en UI (sigue siendo config de servidor)
+- Bloque C solo si un modelo gana a rules en test macro F1 con el mismo contrato
 - Más adaptadores (Kaggle offline)
-- Capa grounded IA sobre evidence
-- Capa de IA generativa **solo** sobre evidencia ya calculada (grounded)
 
 ## Principio rector
 

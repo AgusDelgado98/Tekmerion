@@ -30,6 +30,14 @@ def test_assets_readme():
     assert Path("docs/assets/README.md").exists()
 
 
+def test_learning_path_exists():
+    assert Path("docs/learning-path.md").exists()
+
+
+def test_rules_vs_ml_chart_exists():
+    assert Path("docs/assets/05-rules-vs-ml.png").exists()
+
+
 def test_fake_provider_explicit():
     p = get_provider_from_env(provider_name="fake")
     assert p.name == "fake"

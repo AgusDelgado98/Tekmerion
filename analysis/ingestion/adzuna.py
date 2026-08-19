@@ -86,7 +86,7 @@ class AdzunaCredentials:
 
     def __repr__(self) -> str:
         # Never leak secrets in repr / logs
-        return f"AdzunaCredentials(app_id={self.app_id!r}, api_key=***)"
+        return "AdzunaCredentials(app_id=***, api_key=***)"
 
 
 def load_credentials_from_env(

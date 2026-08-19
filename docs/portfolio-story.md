@@ -18,3 +18,5 @@ Un sistema que puede obtener, procesar, consolidar, comparar y explicar señales
 ## Diferenciador
 
 El LLM no es la fuente de verdad: interpreta un `GroundingPayload` y falla si inventa números, rankings o skills fuera de scope.
+
+V0.8 evalúa sklearn **fuera** de Evidence. En el gold actual las reglas ganan en macro F1 (`promote_ml=false`).
